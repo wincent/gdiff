@@ -12,22 +12,23 @@ DOT                = dot
 # Files
 #
 
-RAGEL_PRECOMP_SRCS = diff.rl
-RAGEL_PRECOMP_OBJS = diff.xml
-RAGEL_CODEGEN_OBJS = diff.m
-RAGEL_DOT_OBJS     = diff.dot
-RAGEL_GRAPHS       = diff.png
-OBJECTS            = diff.o
-CLEANOBJS = *.o
+SOURCES            = gdiff.m WOChange.m WODiff.m WOFile.m
+RAGEL_PRECOMP_SRCS = WODiffMachine.rl
+RAGEL_PRECOMP_OBJS = WODiffMachine.xml
+RAGEL_CODEGEN_OBJS = WODiffMachine.m
+RAGEL_DOT_OBJS     = WODiffMachine.dot
+RAGEL_GRAPHS       = WODiffMachine.png
+OBJECTS            = WODiffMachine.o
+CLEANOBJS          = *.o gdiff
 
 #
 # Rules
 #
 
-all: ragel
+all: gdiff
 
-ragel: $(RAGEL_CODEGEN_OBJS)
-	$(CC) -std=gnu99 -framework Foundation $(RAGEL_CODEGEN_OBJS)
+gdiff: $(RAGEL_CODEGEN_OBJS) $(SOURCES)
+	$(CC) -std=gnu99 -framework Foundation -o $@ $(RAGEL_CODEGEN_OBJS) $(SOURCES)
 
 $(RAGEL_PRECOMP_OBJS) : $(RAGEL_PRECOMP_SRCS)
 $(RAGEL_CODEGEN_OBJS) : $(RAGEL_PRECOMP_OBJS)
