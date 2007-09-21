@@ -22,18 +22,19 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %#x>: %@", NSStringFromClass([self class]), self, [changes description]];
+    return [NSString stringWithFormat:@"<%@ %#x, %s -> %s>: %@",
+        NSStringFromClass([self class]), self,
+        fromPath ? [fromPath fileSystemRepresentation] : [@"()" UTF8String],
+        toPath ? [toPath fileSystemRepresentation] : [@"()" UTF8String],
+        [changes description]];
 }
 
 #pragma mark -
 #pragma mark Other methods
 
-+ (WOFile *)fileWithPath:(NSString *)aPath
++ (WOFile *)file
 {
-    NSParameterAssert(aPath != nil);
-    WOFile *file = [[self alloc] init];
-    [file setPath:aPath];
-    return file;
+    return [[self alloc] init];
 }
 
 - (void)appendChange:(WOChange *)aChange
@@ -45,9 +46,14 @@
 #pragma mark -
 #pragma mark Properties
 
-- (void)setPath:(NSString *)aPath
+- (void)setFromPath:(NSString *)aPath
 {
-    path = [aPath copy];
+    fromPath = [aPath copy];
+}
+
+- (void)setToPath:(NSString *)aPath
+{
+    toPath = [aPath copy];
 }
 
 @end

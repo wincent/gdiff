@@ -12,6 +12,16 @@
 %%{
     machine WODiffMachine;
 
+    # initializes a temporary buffer for parsing paths (which may contain escape sequences)
+    action prepare_buffer               { buffer = [NSMutableString string]; }
+
+    # appends the last-seen char to the current filename buffer (useful for parsing escape sequences)
+    action append_tab                   { [buffer appendString:@"\t"]; }
+    action append_linefeed              { [buffer appendString:@"\n"]; }
+    action append_quote                 { [buffer appendString:@"\""]; }
+    action append_backslash             { [buffer appendString:@"\\"]; }
+    action append_current_char          { [buffer appendFormat:@"%c", *p];}
+
     # for capturing line ranges
     action clear_range_pointers         { location_pointer = length_pointer = NULL; }
     action store_location_pointer       { location_pointer = p; }
@@ -33,12 +43,14 @@
     # called when starting a new file, finalizes any existing changes and files
     action start_file
     {
-    NSLog(@"starting a file");
         if (change) [file appendChange:change];
         change = nil;
         if (file) [diff appendFile:file];
-        file = [WOFile fileWithPath:@"not done yet"];
+        file = [WOFile file];
     }
+
+    action store_from_spec  { [file setFromPath:buffer]; }
+    action store_to_spec    { [file setToPath:buffer]; }
 
     # called on entering a new chunk, finalizes any existing changes
     action reset_line_counters
@@ -84,16 +96,6 @@
             [change addInsertionAtLine:to_cursor];
     }
 
-    # called on reaching the start of a new diff block and the end of input
-    action finalize
-    {
-        NSLog(@"in finalizer!");
-        if (change) [file appendChange:change];
-        change = nil;
-        if (file)   [diff appendFile:file];
-        file = nil;
-    }
-
     # machine order here is largely determined by Ragel (no forward references allowed)
     linefeed                  = "\n" @{ line_idx++; };
     sp                        = " " ;
@@ -112,24 +114,27 @@
                               | "new file mode" sp mode linefeed
                               | "index" sp hash ".." hash (sp mode)? linefeed ;
 
-    dev_null                  = "/dev/null" @{ NSLog(@"/dev/null"); };
+    dev_null                  = "/dev/null" @{ buffer = @"/dev/null"; };
 
-    tab_escape                = "\\t" ;
-    linefeed_escape           = "\\n" ;
-    quote_escape              = "\\\"" ;
-    backslash_escape          = "\\\\" ;
+    tab_escape                = "\\t" @append_tab ;
+    linefeed_escape           = "\\n" @append_linefeed ;
+    quote_escape              = "\\\"" @append_quote ;
+    backslash_escape          = "\\\\" @append_backslash ;
     escape                    = tab_escape | linefeed_escape | quote_escape | backslash_escape ;
 
-    quoted_from_filespec      = '"a/' (escape | [^"\\\n])+ '"' ;
-    unquoted_from_filespec    = "a/" (any - linefeed)+ ;
+    # must accumulate character by character in order to correctly handle escape sequences
+    quoted_from_filespec      = '"a/' (escape | [^"\\\n] $append_current_char )+ '"' ;
+
+    # in unquoted case use the same accumulation method to keep the code simple
+    unquoted_from_filespec    = "a/" (any - linefeed)+ $append_current_char ;
     from_filespec             = quoted_from_filespec | unquoted_from_filespec | dev_null ;
 
-    quoted_to_filespec        = '"b/' (escape | [^"\\\n])+ '"' ;
-    unquoted_to_filespec      = "b/" (any - linefeed)+ ;
+    quoted_to_filespec        = '"b/' (escape | [^"\\\n] $append_current_char )+ '"' ;
+    unquoted_to_filespec      = "b/" (any - linefeed)+ $append_current_char ;
     to_filespec               = quoted_to_filespec | unquoted_to_filespec | dev_null ;
 
-    from_spec                 = "---" sp from_filespec linefeed @{ NSLog(@"from_spec"); };
-    to_spec                   = "+++" sp to_filespec linefeed @{ NSLog(@"to_spec"); };
+    from_spec                 = "---" sp %prepare_buffer from_filespec linefeed %store_from_spec ;
+    to_spec                   = "+++" sp %prepare_buffer to_filespec linefeed %store_to_spec ;
 
     from_range                = "-" ;
     to_range                  = "+" ;
@@ -141,13 +146,13 @@
     context_line              = sp >record_context_line (any - linefeed)* linefeed ;
     deletion_line             = "-" >record_deletion_line (any - linefeed)* linefeed ;
     insertion_line            = "+" >record_insertion_line (any - linefeed)* linefeed ;
-    newline_warning           = "\\ No newline at end of file" linefeed? @{NSLog(@"warn");};
+    newline_warning           = "\\ No newline at end of file" linefeed? ;
 
     chunk                     = range_spec %reset_line_counters
                               . (context_line | deletion_line | insertion_line | newline_warning)+ ;
-    file_block                = git_diff_header
+    file_block                = git_diff_header %start_file
                               . extended_header+
-                              . from_spec %start_file
+                              . from_spec
                               . to_spec
                               . chunk+;
 

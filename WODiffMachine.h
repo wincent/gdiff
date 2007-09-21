@@ -14,31 +14,34 @@
 @interface WODiffMachine : NSObject {
 
     //! The WODiff object currently under construction.
-    WODiff      *diff;
+    WODiff          *diff;
 
     //! The WOFile object currently under construction.
-    WOFile      *file;
+    WOFile          *file;
 
     //! The WOChange object currently under construction.
-    WOChange    *change;
+    WOChange        *change;
+
+    //! Used to accumulate characters when parsing paths (which may contain escape sequences).
+    NSMutableString *buffer;
 
     //! A pointer to the first character of a location string. Used when scanning ranges.
-    char        *location_pointer;
+    char            *location_pointer;
 
     //! A pointer to the first character of a length string. Used when scanning ranges.
-    char        *length_pointer;
+    char            *length_pointer;
 
     //! The start boundary (line number of "from file") for the chunk being scanned.
-    unsigned    from_file_chunk_start;
+    unsigned        from_file_chunk_start;
 
     //! The start boundary (line number of "to file") for the chunk being scanned.
-    unsigned    to_file_chunk_start;
+    unsigned        to_file_chunk_start;
 
     //! The current line number within the "from file".
-    unsigned    from_cursor;
+    unsigned        from_cursor;
 
     //! The current line number within the "to file".
-    unsigned    to_cursor;
+    unsigned        to_cursor;
 
 }
 
