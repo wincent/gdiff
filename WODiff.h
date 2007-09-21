@@ -2,20 +2,24 @@
 // WODiff.h
 // gdiff
 //
-// Created by Wincent Colaiuta on 21/9/2007.
+// Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
-// $Id$
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+
+@class WOFile;
 
 @interface WODiff : NSObject {
 
     //! An array of WOFile objects.
-    NSArray *files;
+    NSMutableArray *files;
 
 }
 
 //! Convenience method which returns a new WODiff instance.
 + (WODiff *)diff;
+
+//! \exception NSInternalInconsistencyException thrown if \p aFile is nil.
+- (void)appendFile:(WOFile *)aFile;
 
 @end

@@ -2,50 +2,52 @@
 // WOChange.h
 // gdiff
 //
-// Created by Wincent Colaiuta on 21/9/2007.
+// Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
-// $Id$
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
+//! Models a single change between the "from file" and the "to file".
+//! A change may either be:
+//!
+//!     - a deletion of 1 or more contiguous lines
+//!     - an insertion of 1 or more contiguous lines
+//!     - both of the above
+//!
 @interface WOChange : NSObject {
 
-    NSIndexSet *insertion;
-    NSIndexSet *deletion;
+    NSRange deletion;
+    NSRange insertion;
 
 }
 
-//! Create a WOChange object which describes the insertion of a single line.
-+ (WOChange *)changeWithInsertionAtLine:(unsigned)aLine;
-
-//! Create a WOChange object which describes the insertion of 1 or more lines.
-+ (WOChange *)changeWithInsertionAtLine:(unsigned)aLine withLength:(unsigned)aLength;
-
-//! Create a WOChange object which describes the deletion of a single line.
+//! Create a WOChange object which describes the deletion of a single line at \p Line.
 + (WOChange *)changeWithDeletionAtLine:(unsigned)aLine;
 
-//! Create a WOChange object which describes the deletion of 1 or more lines.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)aLine withLength:(unsigned)aLength;
+//! Create a WOChange object which describes the insertion of a single line at \p Line.
++ (WOChange *)changeWithInsertionAtLine:(unsigned)aLine;
 
-//! Create a WOChange object which describes the deletion of one line and the insertion of another.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine andInsertionAtLine:(unsigned)otherLine;
+//! Modify an existing WOChange instance, recording an additional deletion at \p aLine.
+//! \exception NSInternalInconsistencyException thrown if the addition would result in a non-contiguous range.
+- (void)addDeletionAtLine:(unsigned)aLine;
 
-//! Create a WOChange object which describes the deletion of 1 or more lines and the insertion of another.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine
-                            withLength:(unsigned)deletionLength
-                    andInsertionAtLine:(unsigned)insertionLine;
+//! Modify an existing WOChange instance, recording an additional insertion at \p aLine.
+//! \exception NSInternalInconsistencyException thrown if the addition would result in a non-contiguous range.
+- (void)addInsertionAtLine:(unsigned)aLine;
 
-//! Create a WOChange object which describes the deletion of a single line and the insertion of 1 or more others.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine
-                    andInsertionAtLine:(unsigned)insertionLine
-                            withLength:(unsigned)insertionLength;
+#pragma mark -
+#pragma mark Properties
 
-//! Create a WOChange object which describes the deletion of 1 or more lines and the insertion of 1 or more others.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine
-                            withLength:(unsigned)insertionLength
-                    andInsertionAtLine:(unsigned)insertionLine
-                            withLength:(unsigned)insertionLength;
+// all readonly
 
-// TODO: some of these methods probably don't need to exist... will see which ones survive pruning
+//! Returns YES if the receiver has a deletion component.
+- (BOOL)hasDeletion;
+
+//! Returns YES if the receiver has an insertion component.
+- (BOOL)hasInsertion;
+
+- (NSRange)deletedRange;
+
+- (NSRange)insertedRange;
 
 @end

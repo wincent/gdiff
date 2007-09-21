@@ -20,14 +20,78 @@
     # for storing chunk boundaries based on captured ranges
     action store_from_range
     {
-        from_file_chunk_start   = atoi(location_pointer);
-        from_file_chunk_end     = length_pointer ? atoi(length_pointer) + from_file_chunk_start : from_file_chunk_start + 1;
+        // note that the atoi() calls here could be replaced with an "all transitions" action and some bitwise shift arithmetic
+        from_file_chunk_start = atoi(location_pointer);
     }
 
     action store_to_range
     {
-        to_file_chunk_start     = atoi(location_pointer);
-        to_file_chunk_end       = length_pointer ? atoi(length_pointer) + to_file_chunk_start : to_file_chunk_start + 1;
+        // note that the atoi() calls here could be replaced with an "all transitions" action and some bitwise shift arithmetic
+        to_file_chunk_start = atoi(location_pointer);
+    }
+
+    # called when starting a new file, finalizes any existing changes and files
+    action start_file
+    {
+    NSLog(@"starting a file");
+        if (change) [file appendChange:change];
+        change = nil;
+        if (file) [diff appendFile:file];
+        file = [WOFile fileWithPath:@"not done yet"];
+    }
+
+    # called on entering a new chunk, finalizes any existing changes
+    action reset_line_counters
+    {
+        if (change)
+        {
+            [file appendChange:change];
+            change  = nil;
+        }
+        from_cursor = from_file_chunk_start > 0 ? from_file_chunk_start - 1 : 0;
+        to_cursor   = to_file_chunk_start > 0 ? to_file_chunk_start - 1 : 0;
+    }
+
+    # called on scanning a line of context (neither addition nor removal), finalizes any existing change
+    action record_context_line
+    {
+        if (change)
+        {
+            [file appendChange:change];
+            change = nil;
+        }
+        from_cursor++;
+        to_cursor++;
+    }
+
+    # called on scanning a deletion line, starts a new change if necessary
+    action record_deletion_line
+    {
+        from_cursor++;
+        if (!change)
+            change = [WOChange changeWithDeletionAtLine:from_cursor];
+        else
+            [change addDeletionAtLine:from_cursor];
+    }
+
+    # called on scanning an insertion line, starts a new change if necessary
+    action record_insertion_line
+    {
+        to_cursor++;
+        if (!change)
+            change = [WOChange changeWithInsertionAtLine:to_cursor];
+        else
+            [change addInsertionAtLine:to_cursor];
+    }
+
+    # called on reaching the start of a new diff block and the end of input
+    action finalize
+    {
+        NSLog(@"in finalizer!");
+        if (change) [file appendChange:change];
+        change = nil;
+        if (file)   [diff appendFile:file];
+        file = nil;
     }
 
     # machine order here is largely determined by Ragel (no forward references allowed)
@@ -74,19 +138,20 @@
                               . from_range range %store_from_range sp
                               . to_range range %store_to_range sp "@@" (any - linefeed)* linefeed ;
 
-    context_line              = sp (any - linefeed)* linefeed @{ NSLog(@"context line %d", line_idx); };
-    deletion_line             = "-" (any - linefeed)* linefeed @{ NSLog(@"deletion %d", line_idx); };
-    insertion_line            = "+" (any - linefeed)* linefeed @{ NSLog(@"insertion %d", line_idx);};
-    newline_warning           = "\\ No newline at end of file" linefeed @{ NSLog(@"warning %d", line_idx);};
+    context_line              = sp >record_context_line (any - linefeed)* linefeed ;
+    deletion_line             = "-" >record_deletion_line (any - linefeed)* linefeed ;
+    insertion_line            = "+" >record_insertion_line (any - linefeed)* linefeed ;
+    newline_warning           = "\\ No newline at end of file" linefeed? @{NSLog(@"warn");};
 
-    chunk                     = range_spec
-                              . (context_line | deletion_line | insertion_line | newline_warning )+ ;
+    chunk                     = range_spec %reset_line_counters
+                              . (context_line | deletion_line | insertion_line | newline_warning)+ ;
     file_block                = git_diff_header
                               . extended_header+
-                              . from_spec
+                              . from_spec %start_file
                               . to_spec
                               . chunk+;
-    main                      := file_block+ linefeed @{ NSLog(@"main");};
+
+    main                      := file_block+ ;
 
 }%%
 
@@ -114,12 +179,16 @@
     char    *p          = (char *)[inData bytes];   // data pointer
     char    *pe         = p + [inData length];      // data end pointer
     int     line_idx    = 0;
-    WODiff  *diff       = [WODiff diff];
+    diff = [WODiff diff];
     %% write init;
     %% write exec;
-    if (p != pe)                                    // did not consume all the input
-        return nil;
-    return diff;
+
+    // finalize and dangling changes/files
+    if (change) [file appendChange:change];
+    if (file)   [diff appendFile:file];
+    NSLog(@"debug info:\n %@", diff);
+    NSLog(@"consumed all input? %d", p == pe);
+    return (p == pe) ? diff : nil;                  // return nil if did not consume all the input
 }
 
 @end

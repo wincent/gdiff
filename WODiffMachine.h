@@ -5,20 +5,40 @@
 // Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-@class WODiff;
+@class WOChange, WODiff, WOFile;
 
 //! Thin Objective-C wrapper for a Ragel-generated state machine that parses the output of "git diff".
+//! Any single instance should only be called from one thread; concurrent access by multiple threads is not supported.
 @interface WODiffMachine : NSObject {
 
-    char *location_pointer;
-    char *length_pointer;
+    //! The WODiff object currently under construction.
+    WODiff      *diff;
 
-    unsigned from_file_chunk_start;
-    unsigned from_file_chunk_end;
-    unsigned to_file_chunk_start;
-    unsigned to_file_chunk_end;
+    //! The WOFile object currently under construction.
+    WOFile      *file;
+
+    //! The WOChange object currently under construction.
+    WOChange    *change;
+
+    //! A pointer to the first character of a location string. Used when scanning ranges.
+    char        *location_pointer;
+
+    //! A pointer to the first character of a length string. Used when scanning ranges.
+    char        *length_pointer;
+
+    //! The start boundary (line number of "from file") for the chunk being scanned.
+    unsigned    from_file_chunk_start;
+
+    //! The start boundary (line number of "to file") for the chunk being scanned.
+    unsigned    to_file_chunk_start;
+
+    //! The current line number within the "from file".
+    unsigned    from_cursor;
+
+    //! The current line number within the "to file".
+    unsigned    to_cursor;
 
 }
 
