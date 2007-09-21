@@ -21,7 +21,7 @@ int main (int argc, const char *argv[])
             exit_status = EXIT_FAILURE;
             continue;
         }
-        
+
         WODiff *diff = [machine parseDiffData:data];
         if (diff == nil)
             exit_status = EXIT_FAILURE;

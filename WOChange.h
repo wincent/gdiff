@@ -9,10 +9,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface WOChange : NSObject {
-    
+
     NSIndexSet *insertion;
     NSIndexSet *deletion;
-    
+
 }
 
 //! Create a WOChange object which describes the insertion of a single line.
@@ -31,17 +31,17 @@
 + (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine andInsertionAtLine:(unsigned)otherLine;
 
 //! Create a WOChange object which describes the deletion of 1 or more lines and the insertion of another.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine 
-                            withLength:(unsigned)deletionLength 
++ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine
+                            withLength:(unsigned)deletionLength
                     andInsertionAtLine:(unsigned)insertionLine;
 
 //! Create a WOChange object which describes the deletion of a single line and the insertion of 1 or more others.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine 
++ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine
                     andInsertionAtLine:(unsigned)insertionLine
                             withLength:(unsigned)insertionLength;
 
 //! Create a WOChange object which describes the deletion of 1 or more lines and the insertion of 1 or more others.
-+ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine 
++ (WOChange *)changeWithDeletionAtLine:(unsigned)deletionLine
                             withLength:(unsigned)insertionLength
                     andInsertionAtLine:(unsigned)insertionLine
                             withLength:(unsigned)insertionLength;

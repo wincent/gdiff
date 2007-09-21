@@ -11,10 +11,10 @@
 
 //! Thin Objective-C wrapper for a Ragel-generated state machine that parses the output of "git diff".
 @interface WODiffMachine : NSObject {
-    
+
     char *location_pointer;
     char *length_pointer;
-    
+
     unsigned from_file_chunk_start;
     unsigned from_file_chunk_end;
     unsigned to_file_chunk_start;

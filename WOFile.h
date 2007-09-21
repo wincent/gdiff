@@ -9,13 +9,13 @@
 #import <Cocoa/Cocoa.h>
 
 @interface WOFile : NSObject {
-    
+
     //! Repositary-relative path.
     NSString *path;
 
     //! An array of WOChange objects.
     NSMutableArray *changes;
-    
+
 }
 
 // changes array by copy only?

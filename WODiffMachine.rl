@@ -11,7 +11,7 @@
 
 %%{
     machine WODiffMachine;
-    
+
     # for capturing line ranges
     action clear_range_pointers         { location_pointer = length_pointer = NULL; }
     action store_location_pointer       { location_pointer = p; }
@@ -70,7 +70,7 @@
     from_range                = "-" ;
     to_range                  = "+" ;
     range                     = digit+ >store_location_pointer ("," digit+ >store_length_pointer)? ;
-    range_spec                = "@@" sp >clear_range_pointers 
+    range_spec                = "@@" sp >clear_range_pointers
                               . from_range range %store_from_range sp
                               . to_range range %store_to_range sp "@@" (any - linefeed)* linefeed ;
 

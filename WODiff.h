@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface WODiff : NSObject {
-    
+
     //! An array of WOFile objects.
     NSArray *files;
 
