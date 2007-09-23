@@ -22,6 +22,10 @@
     //! The WOChange object currently under construction.
     WOChange        *change;
 
+    //! Used to mark the start of substring within the input buffer.
+    //! Used when capturing simple ASCII strings such as unquoted paths and blob ids.
+    char            *mark;
+
     //! Used to accumulate characters when parsing paths (which may contain escape sequences).
     NSMutableString *buffer;
 

@@ -22,10 +22,12 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<%@ %#x, %s -> %s>: %@",
+    return [NSString stringWithFormat:@"<%@ %#x, %s [%@] -> %s [%@] >: %@",
         NSStringFromClass([self class]), self,
         fromPath ? [fromPath fileSystemRepresentation] : [@"()" UTF8String],
+        fromHash ? fromHash : @"?",
         toPath ? [toPath fileSystemRepresentation] : [@"()" UTF8String],
+        toHash ? toHash : @"?",
         [changes description]];
 }
 
@@ -54,6 +56,16 @@
 - (void)setToPath:(NSString *)aPath
 {
     toPath = [aPath copy];
+}
+
+- (void)setFromHash:(NSString *)aHash
+{
+    fromHash = [aHash copy];
+}
+
+- (void)setToHash:(NSString *)aHash
+{
+    toHash = [aHash copy];
 }
 
 @end

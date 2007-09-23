@@ -20,6 +20,14 @@
     //! For newly deleted files this should be /dev/null, in keeping with Git conventions.
     NSString        *toPath;
 
+    //! SHA-1 blob id corresponding to the "from file".
+    //! For non-existent files this will be "0000000", in keeping with Git conventions.
+    NSString        *fromHash;
+
+    //! SHA-1 blob id corresponding to the "to file".
+    //! For non-existent files this will be "0000000", in keeping with Git conventions.
+    NSString        *toHash;
+
     //! An array of WOChange objects.
     NSMutableArray  *changes;
 
@@ -36,6 +44,9 @@
 
 - (void)setFromPath:(NSString *)aPath;
 - (void)setToPath:(NSString *)aPath;
+
+- (void)setFromHash:(NSString *)aPath;
+- (void)setToHash:(NSString *)aPath;
 
 // changes array by copy only?
 
