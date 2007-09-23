@@ -12,9 +12,6 @@
 %%{
     machine WODiffMachine;
 
-    # initializes buffer for incrementally accumulating characters in quoted paths (which may contain escape sequences)
-    action prepare_buffer               { buffer = [NSMutableString string]; }
-
     # records the position of the current character
     # used for simple captures of ASCII text such as blob ids, numeric escapes and unquoted paths
     action set_mark                     { mark = p; }
@@ -23,26 +20,6 @@
     action copy_to_buffer
     {
         buffer = [[NSString alloc] initWithBytesNoCopy:mark length:(p - mark) encoding:NSASCIIStringEncoding freeWhenDone:NO];
-    }
-
-    # appends the last-seen char to the current filename buffer (useful for parsing escape sequences)
-    action append_tab                   { [buffer appendString:@"\t"]; }
-    action append_linefeed              { [buffer appendString:@"\n"]; }
-    action append_quote                 { [buffer appendString:@"\""]; }
-    action append_backslash             { [buffer appendString:@"\\"]; }
-    action append_current_char          { [buffer appendFormat:@"%c", *p];}
-
-    # At this stage this code is little more than a proof-of-concept showing that numeric escapes can be scanned.
-    # In reality appending the bytes one at a time won't work because the buffer presumably uses NSString's native encoding
-    # (UTF-16) whereas the bytes could theoretically be in any platform-specific encoding (on my machine they're in UTF-8).
-    # Note that the following code doesn't yield the right results even on my own system; I'd need to scan all of the escapes
-    # in a given sequence at once, initialize a new NSString based on UTF-8 encoding from them, and only then append them to
-    # the buffer. The best way to do this is probably to make the buffer an NSMutableData object and accumulate raw bytes.
-    # Only once the entire path is scanned will I try to convert that.
-    action append_numeric_escape
-    {
-        // note that the atoi() call here could be replaced with an "all transitions" action and some bitwise shift arithmetic
-        [buffer appendFormat:@"%c", atoi(mark)];
     }
 
     # for capturing line ranges
@@ -142,21 +119,18 @@
 
     dev_null                  = "/dev/null" @{ buffer = @"/dev/null"; };
 
-    numeric_escape            = "\\" %set_mark digit digit digit @append_numeric_escape ;
-    tab_escape                = "\\t" @append_tab ;
-    linefeed_escape           = "\\n" @append_linefeed ;
-    quote_escape              = "\\\"" @append_quote ;
-    backslash_escape          = "\\\\" @append_backslash ;
+    numeric_escape            = "\\" digit digit digit ;
+    tab_escape                = "\\t" ;
+    linefeed_escape           = "\\n" ;
+    quote_escape              = "\\\"" ;
+    backslash_escape          = "\\\\" ;
     escape                    = numeric_escape | tab_escape | linefeed_escape | quote_escape | backslash_escape ;
 
-    # must accumulate character by character in order to correctly handle escape sequences
-    quoted_from_filespec      = '"a/' %prepare_buffer (escape | [^"\\\n] $append_current_char )+ '"' ;
-
-    # in unquoted case can just record start of string
+    quoted_from_filespec      = '"a/' %set_mark (escape | [^"\\\n])+ %copy_to_buffer '"' ;
     unquoted_from_filespec    = "a/" %set_mark (any - linefeed)+ %copy_to_buffer ;
     from_filespec             = quoted_from_filespec | unquoted_from_filespec | dev_null ;
 
-    quoted_to_filespec        = '"b/' %prepare_buffer (escape | [^"\\\n] $append_current_char )+ '"' ;
+    quoted_to_filespec        = '"b/' %set_mark (escape | [^"\\\n])+ %copy_to_buffer '"' ;
     unquoted_to_filespec      = "b/" %set_mark (any - linefeed)+ %copy_to_buffer ;
     to_filespec               = quoted_to_filespec | unquoted_to_filespec | dev_null ;
 

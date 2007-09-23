@@ -26,8 +26,8 @@
     //! Used when capturing simple ASCII strings such as unquoted paths and blob ids.
     char            *mark;
 
-    //! Used to accumulate characters when parsing paths (which may contain escape sequences).
-    NSMutableString *buffer;
+    //! Buffer used for temporary strings when capturing blob ids and paths.
+    NSString        *buffer;
 
     //! A pointer to the first character of a location string. Used when scanning ranges.
     char            *location_pointer;
