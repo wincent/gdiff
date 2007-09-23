@@ -29,12 +29,6 @@
     //! Buffer used for temporary strings when capturing blob ids and paths.
     NSString        *buffer;
 
-    //! A pointer to the first character of a location string. Used when scanning ranges.
-    char            *location_pointer;
-
-    //! A pointer to the first character of a length string. Used when scanning ranges.
-    char            *length_pointer;
-
     //! The start boundary (line number of "from file") for the chunk being scanned.
     unsigned        from_file_chunk_start;
 

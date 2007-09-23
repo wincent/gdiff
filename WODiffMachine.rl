@@ -23,22 +23,11 @@
     }
 
     # for capturing line ranges
-    action clear_range_pointers         { location_pointer = length_pointer = NULL; }
-    action store_location_pointer       { location_pointer = p; }
-    action store_length_pointer         { length_pointer = p; }
+    action clear_range_counters         { from_file_chunk_start = to_file_chunk_start = 0; }
 
     # for storing chunk boundaries based on captured ranges
-    action store_from_range
-    {
-        // note that the atoi() call here could be replaced with an "all transitions" action and some bitwise shift arithmetic
-        from_file_chunk_start = atoi(location_pointer);
-    }
-
-    action store_to_range
-    {
-        // note that the atoi() call here could be replaced with an "all transitions" action and some bitwise shift arithmetic
-        to_file_chunk_start = atoi(location_pointer);
-    }
+    action update_from_range            { from_file_chunk_start = from_file_chunk_start * 10 + (*p - 48); }
+    action update_to_range              { to_file_chunk_start = to_file_chunk_start * 10 + (*p - 48); }
 
     # called when starting a new file, finalizes any existing changes and files
     action start_file
@@ -126,6 +115,7 @@
     backslash_escape          = "\\\\" ;
     escape                    = numeric_escape | tab_escape | linefeed_escape | quote_escape | backslash_escape ;
 
+    # TODO: add a flag to WOFile to indicate whether a path contains escape sequences (just like Git uses quotes for that purpose)
     quoted_from_filespec      = '"a/' %set_mark (escape | [^"\\\n])+ %copy_to_buffer '"' ;
     unquoted_from_filespec    = "a/" %set_mark (any - linefeed)+ %copy_to_buffer ;
     from_filespec             = quoted_from_filespec | unquoted_from_filespec | dev_null ;
@@ -137,12 +127,9 @@
     from_spec                 = "---" sp from_filespec linefeed %store_from_spec ;
     to_spec                   = "+++" sp to_filespec linefeed %store_to_spec ;
 
-    from_range                = "-" ;
-    to_range                  = "+" ;
-    range                     = digit+ >store_location_pointer ("," digit+ >store_length_pointer)? ;
-    range_spec                = "@@" sp >clear_range_pointers
-                              . from_range range %store_from_range sp
-                              . to_range range %store_to_range sp "@@" (any - linefeed)* linefeed ;
+    from_range                = "-" digit+ $update_from_range ("," digit+)? ;
+    to_range                  = "+" digit+ $update_to_range ("," digit+)? ;
+    range_spec                = "@@" sp >clear_range_counters from_range sp to_range sp "@@" (any - linefeed)* linefeed ;
 
     context_line              = sp >record_context_line (any - linefeed)* linefeed ;
     deletion_line             = "-" >record_deletion_line (any - linefeed)* linefeed ;
