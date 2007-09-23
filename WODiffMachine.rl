@@ -171,7 +171,7 @@
     int     cs;                                     // current state; initially WODiffMachine_start
     char    *p          = (char *)[inData bytes];   // data pointer
     char    *pe         = p + [inData length];      // data end pointer
-    int     line_idx    = 0;
+    int     line_idx    = 1;                        // start counting lines from line 1
     diff = [WODiff diff];
     %% write init;
     %% write exec;
@@ -180,8 +180,13 @@
     if (change) [file appendChange:change];
     if (file)   [diff appendFile:file];
     NSLog(@"debug info:\n %@", diff);
-    NSLog(@"consumed all input? %d", p == pe);
-    return (p == pe) ? diff : nil;                  // return nil if did not consume all the input
+
+    if (p != pe)
+    {
+        NSLog(@"error: parse failure on line %d", line_idx);
+        diff = nil; // return nil if did not consume all the input
+    }
+    return diff;
 }
 
 @end
