@@ -16,8 +16,8 @@
 //!
 @interface WOChange : NSObject {
 
-    NSRange deletion;
-    NSRange insertion;
+    NSRange deletedRange;
+    NSRange insertedRange;
 
 }
 
@@ -38,16 +38,14 @@
 #pragma mark -
 #pragma mark Properties
 
-// all readonly
-
 //! Returns YES if the receiver has a deletion component.
-- (BOOL)hasDeletion;
+@property(readonly) BOOL    hasDeletion;
 
 //! Returns YES if the receiver has an insertion component.
-- (BOOL)hasInsertion;
+@property(readonly) BOOL    hasInsertion;
 
-- (NSRange)deletedRange;
+@property(readonly) NSRange deletedRange;
 
-- (NSRange)insertedRange;
+@property(readonly) NSRange insertedRange;
 
 @end

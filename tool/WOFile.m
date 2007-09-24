@@ -16,7 +16,7 @@
 - (id)init
 {
     if ((self = [super init]))
-        self->changes = [[NSMutableArray alloc] init];
+        self->changes = [NSMutableArray array];
     return self;
 }
 
@@ -48,24 +48,10 @@
 #pragma mark -
 #pragma mark Properties
 
-- (void)setFromPath:(NSString *)aPath
-{
-    fromPath = [aPath copy];
-}
-
-- (void)setToPath:(NSString *)aPath
-{
-    toPath = [aPath copy];
-}
-
-- (void)setFromHash:(NSString *)aHash
-{
-    fromHash = [aHash copy];
-}
-
-- (void)setToHash:(NSString *)aHash
-{
-    toHash = [aHash copy];
-}
+@synthesize fromPath;
+@synthesize toPath;
+@synthesize fromHash;
+@synthesize toHash;
+@synthesize changes;
 
 @end

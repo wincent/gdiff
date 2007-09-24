@@ -8,6 +8,16 @@
 // class header
 #import "WOChange.h"
 
+@interface WOChange ()
+
+#pragma mark -
+#pragma mark Property redeclarations
+
+@property NSRange deletedRange;
+@property NSRange insertedRange;
+
+@end
+
 @implementation WOChange
 
 #pragma mark -
@@ -17,8 +27,8 @@
 {
     if ((self = [super init]))
     {
-        self->deletion  = NSMakeRange(NSNotFound, 0);
-        self->insertion = NSMakeRange(NSNotFound, 0);
+        self->deletedRange  = NSMakeRange(NSNotFound, 0);
+        self->insertedRange = NSMakeRange(NSNotFound, 0);
     }
     return self;
 }
@@ -27,8 +37,8 @@
 {
     return [NSString stringWithFormat:@"<%@ %#x>: {deletion: %@, insertion: %@}",
         NSStringFromClass([self class]), self,
-        [self hasDeletion] ? NSStringFromRange(deletion) : @"none",
-        [self hasInsertion] ? NSStringFromRange(insertion) : @"none"];
+        [self hasDeletion] ? NSStringFromRange(self.deletedRange) : @"none",
+        [self hasInsertion] ? NSStringFromRange(self.insertedRange) : @"none"];
 }
 
 #pragma mark -
@@ -52,22 +62,24 @@
 {
     if ([self hasDeletion])
     {
-        NSParameterAssert(aLine == deletion.location + deletion.length);
-        deletion.length++;
+        NSRange range = self.deletedRange;
+        NSParameterAssert(aLine == range.location + range.length);
+        self.deletedRange = NSMakeRange(range.location, range.length + 1);
     }
     else
-        deletion = NSMakeRange(aLine, 1);
+        self.deletedRange = NSMakeRange(aLine, 1);
 }
 
 - (void)addInsertionAtLine:(unsigned)aLine
 {
     if ([self hasInsertion])
     {
-        NSParameterAssert(aLine == insertion.location + insertion.length);
-        insertion.length++;
+        NSRange range = self.insertedRange;
+        NSParameterAssert(aLine == range.location + range.length);
+        self.insertedRange = NSMakeRange(range.location, range.length + 1);
     }
     else
-        insertion = NSMakeRange(aLine, 1);
+        self.insertedRange = NSMakeRange(aLine, 1);
 }
 
 #pragma mark -
@@ -75,23 +87,15 @@
 
 - (BOOL)hasDeletion
 {
-    return (deletion.location != NSNotFound);
+    return (self.deletedRange.location != NSNotFound);
 }
 
 - (BOOL)hasInsertion
 {
-    return (insertion.location != NSNotFound);
+    return (self.insertedRange.location != NSNotFound);
 }
 
-- (NSRange)deletedRange
-{
-    return deletion;
-}
-
-- (NSRange)insertedRange
-{
-    return insertion;
-}
-
+@synthesize deletedRange;
+@synthesize insertedRange;
 
 @end

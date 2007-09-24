@@ -16,7 +16,7 @@
 - (id)init
 {
     if ((self = [super init]))
-        self->files = [[NSMutableArray alloc] init];
+        self->files = [NSMutableArray array];
     return self;
 }
 

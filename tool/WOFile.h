@@ -42,12 +42,10 @@
 #pragma mark -
 #pragma mark Properties
 
-- (void)setFromPath:(NSString *)aPath;
-- (void)setToPath:(NSString *)aPath;
-
-- (void)setFromHash:(NSString *)aPath;
-- (void)setToHash:(NSString *)aPath;
-
-// changes array by copy only?
+@property(copy)     NSString        *fromPath;
+@property(copy)     NSString        *toPath;
+@property(copy)     NSString        *fromHash;
+@property(copy)     NSString        *toHash;
+@property(readonly) NSMutableArray  *changes;
 
 @end
