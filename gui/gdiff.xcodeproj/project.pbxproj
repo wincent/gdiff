@@ -28,7 +28,7 @@
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32DBCF750370BD2300C91783 /* gdiff_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gdiff_Prefix.pch; sourceTree = "<group>"; };
+		32DBCF750370BD2300C91783 /* gdiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gdiff.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* gdiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -121,7 +121,7 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF750370BD2300C91783 /* gdiff_Prefix.pch */,
+				32DBCF750370BD2300C91783 /* gdiff.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -275,7 +275,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCB6AC60CA87373002CE685 /* cocoa-app-target.xcconfig */;
 			buildSettings = {
-				GCC_PREFIX_HEADER = gdiff_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = gdiff;
 			};
@@ -285,7 +284,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCB6AC60CA87373002CE685 /* cocoa-app-target.xcconfig */;
 			buildSettings = {
-				GCC_PREFIX_HEADER = gdiff_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = gdiff;
 			};

@@ -8,11 +8,14 @@
 // class header
 #import "MyDocument.h"
 
-// other project headers
+// other project class headers
 #import "WODiffView.h"
 #import "WOFileView.h"
 #import "WOGlueView.h"
 #import "WOGutterView.h"
+
+// other project headers
+#import "gdiff.h"
 
 @implementation MyDocument
 

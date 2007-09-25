@@ -8,8 +8,11 @@
 // class header
 #import "WODiffView.h"
 
-// other project headers
+// other project class headers
 #import "WOGlueView.h"
+
+// other project headers
+#import "gdiff.h"
 
 @implementation WODiffView
 
