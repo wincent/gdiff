@@ -1,15 +1,25 @@
 //
-//  MyDocument.h
-//  gdiff
+// MyDocument.h
+// gdiff
 //
-//  Created by Wincent Colaiuta on 9/25/07.
-//  Copyright __MyCompanyName__ 2007 . All rights reserved.
-//
-
+// Created by Wincent Colaiuta on 25 September 2007.
+// Copyright 2007 Wincent Colaiuta.
 
 #import <Cocoa/Cocoa.h>
 
-@interface MyDocument : NSDocument
-{
+@class WODiffView, WOFileView, WOGlueView, WOGutterView;
+
+//! Controller.
+@interface MyDocument : NSDocument {
+
+    IBOutlet WODiffView *diffView;
+    WOGutterView        *leftGutterView;
+    WOFileView          *leftFileView;
+    WOGlueView          *glueView;
+    WOGutterView        *rightGutterView;
+    WOFileView          *rightFileView;
+    NSScroller          *scroller;
+
 }
+
 @end
