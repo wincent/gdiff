@@ -5,8 +5,6 @@
 // Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-#import <Foundation/Foundation.h>
-
 //! Models a single change between the "from file" and the "to file".
 //! A change may either be:
 //!

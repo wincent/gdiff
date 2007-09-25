@@ -5,9 +5,6 @@
 // Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-// system headers
-#import <Foundation/Foundation.h>
-
 @class WOChange;
 
 @interface WOFile : NSObject {

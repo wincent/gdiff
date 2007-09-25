@@ -5,8 +5,6 @@
 // Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-#import <Foundation/Foundation.h>
-
 @class WOChange, WODiff, WOFile;
 
 //! Thin Objective-C wrapper for a Ragel-generated state machine that parses the output of "git diff".

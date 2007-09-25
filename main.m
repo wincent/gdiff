@@ -1,12 +1,9 @@
 //
-//  main.m
-//  gdiff
+// main.m
+// gdiff
 //
-//  Created by Wincent Colaiuta on 9/25/07.
-//  Copyright __MyCompanyName__ 2007 . All rights reserved.
-//
-
-#import <Cocoa/Cocoa.h>
+// Created by Wincent Colaiuta on 25 September 2007.
+// Copyright 2007 Wincent Colaiuta.
 
 int main(int argc, char *argv[])
 {
