@@ -27,6 +27,7 @@
 		BCCB6D000CA931FA002CE685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
 		BCCB6DF60CA9546F002CE685 /* WOPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */; };
 		BCCB6DF70CA9546F002CE685 /* WOPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */; };
+		BCCB6E450CA95E16002CE685 /* WOAppController.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6E440CA95E16002CE685 /* WOAppController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -104,6 +105,8 @@
 		BCCB6CF80CA93194002CE685 /* gdiff */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gdiff; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCB6DF40CA9546F002CE685 /* WOPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOPathUtilities.h; sourceTree = "<group>"; };
 		BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOPathUtilities.m; sourceTree = "<group>"; };
+		BCCB6E430CA95E16002CE685 /* WOAppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOAppController.h; sourceTree = "<group>"; };
+		BCCB6E440CA95E16002CE685 /* WOAppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOAppController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +256,8 @@
 			children = (
 				2A37F4AEFDCFA73011CA2CEA /* WODocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* WODocument.m */,
+				BCCB6E430CA95E16002CE685 /* WOAppController.h */,
+				BCCB6E440CA95E16002CE685 /* WOAppController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -380,6 +385,7 @@
 				BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */,
 				BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */,
 				BCCB6DF70CA9546F002CE685 /* WOPathUtilities.m in Sources */,
+				BCCB6E450CA95E16002CE685 /* WOAppController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
