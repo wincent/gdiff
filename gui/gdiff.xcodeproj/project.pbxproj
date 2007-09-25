@@ -21,7 +21,23 @@
 		BCCB6C910CA921D1002CE685 /* WOChange.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8C0CA921D1002CE685 /* WOChange.m */; };
 		BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8E0CA921D1002CE685 /* WODiff.m */; };
 		BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C900CA921D1002CE685 /* WOFile.m */; };
+		BCCB6CCE0CA924E1002CE685 /* WODiffMachine.rl in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		BCCB6CC70CA922E9002CE685 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.rl";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).m",
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).dot",
+			);
+			script = "ragel -s -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.xml\" \"${INPUT_FILE_PATH}\" &&\nrlgen-cd -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.xml\" &&\nrlgen-dot -p -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.dot\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.xml\"";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -57,6 +73,8 @@
 		BCCB6C8E0CA921D1002CE685 /* WODiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODiff.m; sourceTree = "<group>"; };
 		BCCB6C8F0CA921D1002CE685 /* WOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOFile.h; sourceTree = "<group>"; };
 		BCCB6C900CA921D1002CE685 /* WOFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOFile.m; sourceTree = "<group>"; };
+		BCCB6C9B0CA922A1002CE685 /* WODiffMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODiffMachine.h; sourceTree = "<group>"; };
+		BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WODiffMachine.rl; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +183,8 @@
 		BCCB6C860CA92110002CE685 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BCCB6C9B0CA922A1002CE685 /* WODiffMachine.h */,
+				BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */,
 				BCCB6C8B0CA921D1002CE685 /* WOChange.h */,
 				BCCB6C8C0CA921D1002CE685 /* WOChange.m */,
 				BCCB6C8D0CA921D1002CE685 /* WODiff.h */,
@@ -211,6 +231,7 @@
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 			);
 			buildRules = (
+				BCCB6CC70CA922E9002CE685 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -263,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCB6CCE0CA924E1002CE685 /* WODiffMachine.rl in Sources */,
 				8D15AC310486D014006FF6A4 /* MyDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */,
