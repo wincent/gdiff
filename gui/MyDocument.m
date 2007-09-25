@@ -17,6 +17,19 @@
 // other project headers
 #import "gdiff.h"
 
+@interface MyDocument ()
+
+// used to scroll up or down by lines or pages (called when clicking scroller arrows or in the blank space outside of the knob)
+- (void)scrollByLines:(int)delta;
+
+// used to scroll to a specific point (called when dragging the scroll knob)
+- (void)scrollToValue:(float)aValue;
+
+// returns the number of currently visible lines; used when scrolling "by page"
+- (int)visibleLineCount;
+
+@end
+
 @implementation MyDocument
 
 #pragma mark -
@@ -100,6 +113,8 @@
     // add NSScroller (far right)
     scroller = [[NSScroller alloc] initWithFrame:NSMakeRect(x, y, scrollerWidth, height)];
     [scroller setAutoresizingMask:NSViewHeightSizable | NSViewMinXMargin];
+    [scroller setTarget:self];
+    [scroller setAction:@selector(scroll:)];
     [rightView addSubview:scroller];
 }
 
@@ -133,5 +148,45 @@
 
 #pragma mark -
 #pragma mark Scroller management
+
+// called whenever use clicks in scroller
+- (void)scroll:(id)sender
+{
+    NSScrollerPart hitPart = [sender hitPart];
+    switch (hitPart)
+    {
+        case NSScrollerNoPart:
+            break;
+        case NSScrollerIncrementPage:
+            [self scrollByLines:[self visibleLineCount]];   break;
+        case NSScrollerDecrementPage:
+            [self scrollByLines:-[self visibleLineCount]];  break;
+        case NSScrollerDecrementLine:
+            [self scrollByLines:-1];                        break;
+        case NSScrollerIncrementLine:
+            [self scrollByLines:1];                         break;
+        case NSScrollerKnob:
+        case NSScrollerKnobSlot:
+            [self scrollToValue:[sender floatValue]];       break;
+        default:
+            // could get here in future version of operating system
+            NSLog(@"warning: scroller %@ returned unknown hitPart %d", sender, hitPart);
+    }
+}
+
+- (void)scrollByLines:(int)delta
+{
+    // check limits
+}
+
+- (void)scrollToValue:(float)aValue
+{
+
+}
+
+- (int)visibleLineCount
+{
+    return 0;
+}
 
 @end
