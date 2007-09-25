@@ -18,6 +18,9 @@
 		BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */; };
 		BCCB6AF30CA87AA5002CE685 /* WOGlueView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */; };
 		BCCB6B1E0CA89147002CE685 /* WOGutterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6B1D0CA89147002CE685 /* WOGutterView.m */; };
+		BCCB6C910CA921D1002CE685 /* WOChange.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8C0CA921D1002CE685 /* WOChange.m */; };
+		BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8E0CA921D1002CE685 /* WODiff.m */; };
+		BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C900CA921D1002CE685 /* WOFile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,12 @@
 		BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOGlueView.m; sourceTree = "<group>"; };
 		BCCB6B1C0CA89147002CE685 /* WOGutterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOGutterView.h; sourceTree = "<group>"; };
 		BCCB6B1D0CA89147002CE685 /* WOGutterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOGutterView.m; sourceTree = "<group>"; };
+		BCCB6C8B0CA921D1002CE685 /* WOChange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOChange.h; sourceTree = "<group>"; };
+		BCCB6C8C0CA921D1002CE685 /* WOChange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOChange.m; sourceTree = "<group>"; };
+		BCCB6C8D0CA921D1002CE685 /* WODiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODiff.h; sourceTree = "<group>"; };
+		BCCB6C8E0CA921D1002CE685 /* WODiff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODiff.m; sourceTree = "<group>"; };
+		BCCB6C8F0CA921D1002CE685 /* WOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOFile.h; sourceTree = "<group>"; };
+		BCCB6C900CA921D1002CE685 /* WOFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOFile.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,16 +113,9 @@
 		2A37F4ABFDCFA73011CA2CEA /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */,
-				2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */,
-				BCCB6AEB0CA87A8D002CE685 /* WODiffView.h */,
-				BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */,
-				BCCB6AEE0CA87A9B002CE685 /* WOFileView.h */,
-				BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */,
-				BCCB6AF10CA87AA5002CE685 /* WOGlueView.h */,
-				BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */,
-				BCCB6B1C0CA89147002CE685 /* WOGutterView.h */,
-				BCCB6B1D0CA89147002CE685 /* WOGutterView.m */,
+				BCCB6C860CA92110002CE685 /* Models */,
+				BCCB6C870CA92116002CE685 /* Views */,
+				BCCB6C880CA9211C002CE685 /* Controllers */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -158,6 +160,43 @@
 				BCCB6AC90CA87373002CE685 /* release-style.xcconfig */,
 			);
 			name = Configuration;
+			sourceTree = "<group>";
+		};
+		BCCB6C860CA92110002CE685 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BCCB6C8B0CA921D1002CE685 /* WOChange.h */,
+				BCCB6C8C0CA921D1002CE685 /* WOChange.m */,
+				BCCB6C8D0CA921D1002CE685 /* WODiff.h */,
+				BCCB6C8E0CA921D1002CE685 /* WODiff.m */,
+				BCCB6C8F0CA921D1002CE685 /* WOFile.h */,
+				BCCB6C900CA921D1002CE685 /* WOFile.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		BCCB6C870CA92116002CE685 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BCCB6AEB0CA87A8D002CE685 /* WODiffView.h */,
+				BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */,
+				BCCB6AEE0CA87A9B002CE685 /* WOFileView.h */,
+				BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */,
+				BCCB6AF10CA87AA5002CE685 /* WOGlueView.h */,
+				BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */,
+				BCCB6B1C0CA89147002CE685 /* WOGutterView.h */,
+				BCCB6B1D0CA89147002CE685 /* WOGutterView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		BCCB6C880CA9211C002CE685 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4AEFDCFA73011CA2CEA /* MyDocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* MyDocument.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +269,9 @@
 				BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */,
 				BCCB6AF30CA87AA5002CE685 /* WOGlueView.m in Sources */,
 				BCCB6B1E0CA89147002CE685 /* WOGutterView.m in Sources */,
+				BCCB6C910CA921D1002CE685 /* WOChange.m in Sources */,
+				BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */,
+				BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
