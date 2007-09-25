@@ -52,6 +52,8 @@
 @synthesize toPath;
 @synthesize fromHash;
 @synthesize toHash;
+@synthesize fromBlob;
+@synthesize toBlob;
 @synthesize changes;
 
 @end
