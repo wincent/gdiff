@@ -5,9 +5,6 @@
 // Created by Wincent Colaiuta on 21 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-// system headers
-#import <sys/sysctl.h>
-
 // other project headers
 #import "WOPathUtilities.h"
 
@@ -26,7 +23,7 @@ int process_data(NSData *data)
 {
     NSCParameterAssert(data != nil);
     NSString *diff = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-    NSLog(@"diff text for processing:\n%@", p);
+    NSLog(@"diff text for processing:\n%@", diff);
     return EXIT_SUCCESS; // if it worked
 }
 
