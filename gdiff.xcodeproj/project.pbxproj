@@ -22,6 +22,9 @@
 		BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8E0CA921D1002CE685 /* WODiff.m */; };
 		BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C900CA921D1002CE685 /* WOFile.m */; };
 		BCCB6CCE0CA924E1002CE685 /* WODiffMachine.rl in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */; };
+		BCCB6CFE0CA931BD002CE685 /* gdiff in Resources */ = {isa = PBXBuildFile; fileRef = BCCB6CF80CA93194002CE685 /* gdiff */; };
+		BCCB6CFF0CA931C6002CE685 /* gdiff-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */; };
+		BCCB6D000CA931FA002CE685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -49,6 +52,16 @@
 		};
 /* End PBXBuildRule section */
 
+/* Begin PBXContainerItemProxy section */
+		BCCB6CFC0CA931A9002CE685 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BCCB6CF70CA93194002CE685;
+			remoteInfo = "gdiff tool";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -64,11 +77,11 @@
 		BCCB6AAD0CA8729C002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		BCCB6AAE0CA872A3002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MyDocument.nib; sourceTree = "<group>"; };
 		BCCB6AAF0CA872A9002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BCCB6AC50CA87373002CE685 /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BCCB6AC60CA87373002CE685 /* cocoa-app-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "cocoa-app-target.xcconfig"; path = "../../../buildtools/cocoa-app-target.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BCCB6AC70CA87373002CE685 /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BCCB6AC90CA87373002CE685 /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
+		BCCB6AC50CA87373002CE685 /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
+		BCCB6AC60CA87373002CE685 /* cocoa-app-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "cocoa-app-target.xcconfig"; path = "../../buildtools/cocoa-app-target.xcconfig"; sourceTree = SOURCE_ROOT; };
+		BCCB6AC70CA87373002CE685 /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
+		BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
+		BCCB6AC90CA87373002CE685 /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BCCB6AEB0CA87A8D002CE685 /* WODiffView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODiffView.h; sourceTree = "<group>"; };
 		BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODiffView.m; sourceTree = "<group>"; };
 		BCCB6AEE0CA87A9B002CE685 /* WOFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOFileView.h; sourceTree = "<group>"; };
@@ -85,6 +98,8 @@
 		BCCB6C900CA921D1002CE685 /* WOFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOFile.m; sourceTree = "<group>"; };
 		BCCB6C9B0CA922A1002CE685 /* WODiffMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODiffMachine.h; sourceTree = "<group>"; };
 		BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WODiffMachine.rl; sourceTree = "<group>"; };
+		BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "gdiff-tool.m"; sourceTree = "<group>"; };
+		BCCB6CF80CA93194002CE685 /* gdiff */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gdiff; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +108,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCCB6CF60CA93194002CE685 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCB6D000CA931FA002CE685 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				8D15AC370486D014006FF6A4 /* gdiff.app */,
+				BCCB6CF80CA93194002CE685 /* gdiff */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,9 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				BCCB6AC20CA87355002CE685 /* Configuration */,
-				2A37F4ABFDCFA73011CA2CEA /* Classes */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
-				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				BCCB6CE70CA9306F002CE685 /* Tool */,
+				BCCB6CE60CA9306A002CE685 /* GUI */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
@@ -229,12 +252,30 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		BCCB6CE60CA9306A002CE685 /* GUI */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4ABFDCFA73011CA2CEA /* Classes */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+			);
+			name = GUI;
+			sourceTree = "<group>";
+		};
+		BCCB6CE70CA9306F002CE685 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */,
+			);
+			name = Tool;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D15AC270486D014006FF6A4 /* gdiff */ = {
+		8D15AC270486D014006FF6A4 /* gdiff GUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "gdiff" */;
+			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "gdiff GUI" */;
 			buildPhases = (
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
@@ -245,12 +286,29 @@
 				BCCB6CC70CA922E9002CE685 /* PBXBuildRule */,
 			);
 			dependencies = (
+				BCCB6CFD0CA931A9002CE685 /* PBXTargetDependency */,
 			);
-			name = gdiff;
+			name = "gdiff GUI";
 			productInstallPath = "$(HOME)/Applications";
 			productName = gdiff;
 			productReference = 8D15AC370486D014006FF6A4 /* gdiff.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BCCB6CF70CA93194002CE685 /* gdiff tool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BCCB6D860CA93207002CE685 /* Build configuration list for PBXNativeTarget "gdiff tool" */;
+			buildPhases = (
+				BCCB6CF50CA93194002CE685 /* Sources */,
+				BCCB6CF60CA93194002CE685 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "gdiff tool";
+			productName = "gdiff tool";
+			productReference = BCCB6CF80CA93194002CE685 /* gdiff */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -271,7 +329,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D15AC270486D014006FF6A4 /* gdiff */,
+				BCCB6CF70CA93194002CE685 /* gdiff tool */,
+				8D15AC270486D014006FF6A4 /* gdiff GUI */,
 			);
 		};
 /* End PBXProject section */
@@ -281,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCB6CFE0CA931BD002CE685 /* gdiff in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* MyDocument.nib in Resources */,
@@ -308,7 +368,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCCB6CF50CA93194002CE685 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCCB6CFF0CA931C6002CE685 /* gdiff-tool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BCCB6CFD0CA931A9002CE685 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BCCB6CF70CA93194002CE685 /* gdiff tool */;
+			targetProxy = BCCB6CFC0CA931A9002CE685 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -346,6 +422,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BCCB6CFA0CA93194002CE685 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = gdiff;
+			};
+			name = Debug;
+		};
+		BCCB6CFB0CA93194002CE685 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = gdiff;
+			};
+			name = Release;
+		};
 		C05733C808A9546B00998B17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCB6AC60CA87373002CE685 /* cocoa-app-target.xcconfig */;
@@ -381,7 +473,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "gdiff" */ = {
+		BCCB6D860CA93207002CE685 /* Build configuration list for PBXNativeTarget "gdiff tool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BCCB6CFA0CA93194002CE685 /* Debug */,
+				BCCB6CFB0CA93194002CE685 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "gdiff GUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C05733C808A9546B00998B17 /* Debug */,
