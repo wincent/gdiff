@@ -25,6 +25,8 @@
 		BCCB6CFE0CA931BD002CE685 /* gdiff in Resources */ = {isa = PBXBuildFile; fileRef = BCCB6CF80CA93194002CE685 /* gdiff */; };
 		BCCB6CFF0CA931C6002CE685 /* gdiff-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */; };
 		BCCB6D000CA931FA002CE685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
+		BCCB6DF60CA9546F002CE685 /* WOPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */; };
+		BCCB6DF70CA9546F002CE685 /* WOPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -100,6 +102,8 @@
 		BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = WODiffMachine.rl; sourceTree = "<group>"; };
 		BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "gdiff-tool.m"; sourceTree = "<group>"; };
 		BCCB6CF80CA93194002CE685 /* gdiff */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gdiff; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCCB6DF40CA9546F002CE685 /* WOPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOPathUtilities.h; sourceTree = "<group>"; };
+		BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOPathUtilities.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* gdiff */ = {
 			isa = PBXGroup;
 			children = (
+				BCCB6DF30CA95441002CE685 /* Utility */,
 				BCCB6AC20CA87355002CE685 /* Configuration */,
 				BCCB6CE70CA9306F002CE685 /* Tool */,
 				BCCB6CE60CA9306A002CE685 /* GUI */,
@@ -270,6 +275,15 @@
 			name = Tool;
 			sourceTree = "<group>";
 		};
+		BCCB6DF30CA95441002CE685 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				BCCB6DF40CA9546F002CE685 /* WOPathUtilities.h */,
+				BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -365,6 +379,7 @@
 				BCCB6C910CA921D1002CE685 /* WOChange.m in Sources */,
 				BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */,
 				BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */,
+				BCCB6DF70CA9546F002CE685 /* WOPathUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +388,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCCB6CFF0CA931C6002CE685 /* gdiff-tool.m in Sources */,
+				BCCB6DF60CA9546F002CE685 /* WOPathUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,9 @@
 // system headers
 #import <sys/sysctl.h>
 
+// other project headers
+#import "WOPathUtilities.h"
+
 void usage(const char *executable)
 {
     fprintf(stderr, "Usage:\n"
@@ -17,63 +20,6 @@ void usage(const char *executable)
             "    (reads and processes git-diff output directly from the standard input)\n"
             "  cat PATCHFILES... | %s\n"
             "    (reads and processes Git patches from the standard input)\n", executable, executable, executable);
-}
-
-NSString *git_diff_path(void)
-{
-    NSString    *gitPath        = nil;
-    NSString    *searchPaths    = nil;
-
-    // get current search path, expect a string like "/usr/bin:/bin:/usr/sbin:/sbin" or similar
-    char        *path           = getenv("PATH");
-    if (path)
-    {
-        searchPaths = [NSString stringWithUTF8String:path];
-        path        = NULL; // avoid double-freeing
-    }
-    else
-    {
-        fprintf(stderr, "warning: PATH environment variable not set, failing back to sysctl\n");
-        size_t  path_len;
-        int     mib[] = { CTL_USER, USER_CS_PATH };
-
-        // get size of path string
-        if (sysctl(mib, 2, NULL, &path_len, NULL, 0) != 0)
-        {
-            perror("error: (sysctl)");
-            goto bail;
-        }
-
-        // allocate space for string
-        path = malloc(path_len);
-        if (path == NULL)
-        {
-            perror("error: (malloc)");
-            goto bail;
-        }
-
-        // actually get string
-        if (sysctl(mib, 2, path, &path_len, NULL, 0) != 0)
-        {
-            perror("error: (sysctl)");
-            goto bail;
-        }
-        else
-            searchPaths = [NSString stringWithUTF8String:path];
-    }
-
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    for (NSString *searchPath in [searchPaths componentsSeparatedByString:@":"])
-    {
-        NSString *checkPath = [searchPath stringByAppendingPathComponent:@"git-diff"];
-        if ([fileManager isExecutableFileAtPath:checkPath])
-            return checkPath;
-    }
-
-bail:
-    if (path)
-        free(path);
-    return gitPath;
 }
 
 int process_data(NSData *data)
@@ -109,7 +55,7 @@ int main(int argc, const char *argv[])
         NSPipe          *outPipe    = [NSPipe pipe];
         NSFileHandle    *outHandle  = [outPipe fileHandleForReading];
         NSTask          *task       = [[NSTask alloc] init];
-        NSString        *gitDiff    = git_diff_path();
+        NSString        *gitDiff    = path_for_tool(@"git-diff");
         if (!gitDiff)
         {
             fprintf(stderr, "error: unable to locate git-diff in the current PATH\n");
