@@ -32,10 +32,20 @@
 			fileType = pattern.proxy;
 			isEditable = 1;
 			outputFiles = (
-				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).m",
-				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).dot",
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).ragel",
 			);
-			script = "ragel -s -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.xml\" \"${INPUT_FILE_PATH}\" &&\nrlgen-cd -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.xml\" &&\nrlgen-dot -p -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.dot\" \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.xml\"";
+			script = "ragel -s -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.ragel\" \"${INPUT_FILE_PATH}\"";
+		};
+		BCCB6CD40CA926B4002CE685 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.ragel";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).m",
+			);
+			script = "rlgen-cd -o \"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m\" \"${INPUT_FILE_PATH}\"";
 		};
 /* End PBXBuildRule section */
 
@@ -231,6 +241,7 @@
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 			);
 			buildRules = (
+				BCCB6CD40CA926B4002CE685 /* PBXBuildRule */,
 				BCCB6CC70CA922E9002CE685 /* PBXBuildRule */,
 			);
 			dependencies = (
