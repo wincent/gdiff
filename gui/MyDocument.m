@@ -19,6 +19,9 @@
 
 @implementation MyDocument
 
+#pragma mark -
+#pragma mark NSObject overrides
+
 - (id)init
 {
     self = [super init];
@@ -30,6 +33,9 @@
     }
     return self;
 }
+
+#pragma mark -
+#pragma mark NSDocument overrides
 
 - (NSString *)windowNibName
 {
@@ -124,5 +130,8 @@
 	}
     return YES;
 }
+
+#pragma mark -
+#pragma mark Scroller management
 
 @end
