@@ -14,6 +14,8 @@
 		8D15AC310486D014006FF6A4 /* WODocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* WODocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		BC2466240CAA69370003AA11 /* installer-tool in Resources */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
+		BC2466250CAA694B0003AA11 /* installer-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.m */; };
 		BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */; };
 		BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */; };
 		BCCB6AF30CA87AA5002CE685 /* WOGlueView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */; };
@@ -56,6 +58,13 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
+		BC2466220CAA69310003AA11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC24661D0CAA69270003AA11 /* installer-tool */;
+			remoteInfo = "installer-tool";
+		};
 		BCCB6CFC0CA931A9002CE685 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -76,6 +85,8 @@
 		32DBCF750370BD2300C91783 /* gdiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gdiff.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* gdiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC2466160CAA69040003AA11 /* installer-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "installer-tool.m"; sourceTree = "<group>"; };
+		BC24661E0CAA69270003AA11 /* installer-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "installer-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BCCB6AAD0CA8729C002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		BCCB6AAE0CA872A3002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Document.nib; sourceTree = "<group>"; };
@@ -118,6 +129,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC24661C0CAA69270003AA11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BCCB6CF60CA93194002CE685 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -152,6 +170,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* gdiff.app */,
 				BCCB6CF80CA93194002CE685 /* gdiff */,
+				BC24661E0CAA69270003AA11 /* installer-tool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -159,9 +178,9 @@
 		2A37F4AAFDCFA73011CA2CEA /* gdiff */ = {
 			isa = PBXGroup;
 			children = (
-				BCCB6DF30CA95441002CE685 /* Utility */,
 				BCCB6AC20CA87355002CE685 /* Configuration */,
-				BCCB6CE70CA9306F002CE685 /* Tool */,
+				BCCB6DF30CA95441002CE685 /* Utility */,
+				BCCB6CE70CA9306F002CE685 /* Tools */,
 				BCCB6CE60CA9306A002CE685 /* GUI */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
@@ -272,12 +291,13 @@
 			name = GUI;
 			sourceTree = "<group>";
 		};
-		BCCB6CE70CA9306F002CE685 /* Tool */ = {
+		BCCB6CE70CA9306F002CE685 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
 				BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */,
+				BC2466160CAA69040003AA11 /* installer-tool.m */,
 			);
-			name = Tool;
+			name = Tools;
 			sourceTree = "<group>";
 		};
 		BCCB6DF30CA95441002CE685 /* Utility */ = {
@@ -305,6 +325,7 @@
 				BCCB6CC70CA922E9002CE685 /* PBXBuildRule */,
 			);
 			dependencies = (
+				BC2466230CAA69310003AA11 /* PBXTargetDependency */,
 				BCCB6CFD0CA931A9002CE685 /* PBXTargetDependency */,
 			);
 			name = "gdiff GUI";
@@ -312,6 +333,22 @@
 			productName = gdiff;
 			productReference = 8D15AC370486D014006FF6A4 /* gdiff.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BC24661D0CAA69270003AA11 /* installer-tool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BC2466260CAA69690003AA11 /* Build configuration list for PBXNativeTarget "installer-tool" */;
+			buildPhases = (
+				BC24661B0CAA69270003AA11 /* Sources */,
+				BC24661C0CAA69270003AA11 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "installer-tool";
+			productName = "installer-tool";
+			productReference = BC24661E0CAA69270003AA11 /* installer-tool */;
+			productType = "com.apple.product-type.tool";
 		};
 		BCCB6CF70CA93194002CE685 /* gdiff tool */ = {
 			isa = PBXNativeTarget;
@@ -349,6 +386,7 @@
 			projectRoot = "";
 			targets = (
 				BCCB6CF70CA93194002CE685 /* gdiff tool */,
+				BC24661D0CAA69270003AA11 /* installer-tool */,
 				8D15AC270486D014006FF6A4 /* gdiff GUI */,
 			);
 		};
@@ -359,6 +397,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC2466240CAA69370003AA11 /* installer-tool in Resources */,
 				BCCB6CFE0CA931BD002CE685 /* gdiff in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
@@ -389,6 +428,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BC24661B0CAA69270003AA11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC2466250CAA694B0003AA11 /* installer-tool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BCCB6CF50CA93194002CE685 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +448,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BC2466230CAA69310003AA11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC24661D0CAA69270003AA11 /* installer-tool */;
+			targetProxy = BC2466220CAA69310003AA11 /* PBXContainerItemProxy */;
+		};
 		BCCB6CFD0CA931A9002CE685 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BCCB6CF70CA93194002CE685 /* gdiff tool */;
@@ -444,6 +496,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BC2466200CAA69280003AA11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "installer-tool";
+			};
+			name = Debug;
+		};
+		BC2466210CAA69280003AA11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */;
+			buildSettings = {
+				PRODUCT_NAME = "installer-tool";
+			};
+			name = Release;
+		};
 		BCCB6CFA0CA93194002CE685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */;
@@ -495,6 +563,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BC2466260CAA69690003AA11 /* Build configuration list for PBXNativeTarget "installer-tool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC2466200CAA69280003AA11 /* Debug */,
+				BC2466210CAA69280003AA11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BCCB6D860CA93207002CE685 /* Build configuration list for PBXNativeTarget "gdiff tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
