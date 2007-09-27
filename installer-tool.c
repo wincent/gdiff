@@ -72,8 +72,8 @@ int main(int argc, const char *argv[])
     else if (child == 0)
     {
         // in child
-        char *const args[] =  { WO_DITTO, gdiff, "/usr/local/bin/gdiff", NULL };
-        char *const env[] = {};
+        char *const args[]  =  { WO_DITTO, gdiff, "/usr/local/bin/gdiff", NULL };
+        char *const env[]   = { NULL };
         execve(WO_DITTO, args, env);
         perror("error: (execve)");  // should never get to this line
         _exit(EXIT_FAILURE);
