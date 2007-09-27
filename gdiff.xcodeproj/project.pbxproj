@@ -16,6 +16,7 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		BC2466240CAA69370003AA11 /* installer-tool in Resources */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
 		BC2466250CAA694B0003AA11 /* installer-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.m */; };
+		BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9376450CABBEDC00ECD330 /* Security.framework */; };
 		BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */; };
 		BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */; };
 		BCCB6AF30CA87AA5002CE685 /* WOGlueView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */; };
@@ -62,7 +63,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = BC24661D0CAA69270003AA11 /* installer-tool */;
+			remoteGlobalIDString = BC24661D0CAA69270003AA11;
 			remoteInfo = "installer-tool";
 		};
 		BCCB6CFC0CA931A9002CE685 /* PBXContainerItemProxy */ = {
@@ -87,6 +88,7 @@
 		8D15AC370486D014006FF6A4 /* gdiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2466160CAA69040003AA11 /* installer-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "installer-tool.m"; sourceTree = "<group>"; };
 		BC24661E0CAA69270003AA11 /* installer-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "installer-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC9376450CABBEDC00ECD330 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BCCB6AAD0CA8729C002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		BCCB6AAE0CA872A3002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Document.nib; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
+				BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +161,7 @@
 		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC9376450CABBEDC00ECD330 /* Security.framework */,
 				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
 				13E42FBA07B3F13500E4EEF1 /* CoreData.framework */,
 				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
@@ -179,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				BCCB6AC20CA87355002CE685 /* Configuration */,
+				BC93761D0CABB6BF00ECD330 /* Shared */,
 				BCCB6DF30CA95441002CE685 /* Utility */,
 				BCCB6CE70CA9306F002CE685 /* Tools */,
 				BCCB6CE60CA9306A002CE685 /* GUI */,
@@ -201,7 +206,6 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				32DBCF750370BD2300C91783 /* gdiff.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -226,6 +230,14 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC93761D0CABB6BF00ECD330 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF750370BD2300C91783 /* gdiff.h */,
+			);
+			name = Shared;
 			sourceTree = "<group>";
 		};
 		BCCB6AC20CA87355002CE685 /* Configuration */ = {

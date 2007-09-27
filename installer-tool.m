@@ -5,6 +5,12 @@
 // Created by Wincent Colaiuta on 26 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
+// other project headers
+#import "gdiff.h"
+
+//! \file installer-tool.m
+//! Installer tool for gdiff helper
+//!
 //! This separate installer tool is required because AuthorizationExecuteWithPrivileges does not provide an exit status or child process id that could be used to find it out. Determing the exit status of a child process is a critically important capability, especially in an installer, and central to the UNIX process model. In order to find out whether the executed process succeeded you either have wait for any child process (a brittle solution in cases where an application might conceivably have forked multiple child processes) or use a separate wrapper tool as a "middle man" that explicitly communicates its process id back to the parent process. This latter workaround is the one implemented here, seeing as gdiff could very well have multiple child processes due to its multithreaded nature and use of Git tools.
 //!
 //! Seeing as the installer will run with root privileges it is kept very simple and does one "hard-coded" job with (intentionally) no flexibility:
@@ -16,7 +22,10 @@
 //! Note that there <em>is</em> a security hole in this approach; namely, that an attacker without root privileges but <em>with</em> write access to the installer tool can replace it with a binary of his or her own construction. But this hole is not unique to this implementation; any application which uses AuthorizationExecuteWithPrivileges is vulnerable to similar attacks where an attacker with write access to the application overwrites the string literals in the executable to change what is executed. In short, any application which obtains eleveted privileges and is simultaneously writeable by non-admin users is vulnerable.
 //!
 //! An additional degree of security may be afforded by using Leopard's code signing feature and then performing self-verification of the signature, but this is only another layer in a defense-in-depth strategy because an attacker could still replace the entire binary (along with its signature or any signature verification schemes). In general any time you add another check-then-perform layer it will be vulnerable to two possible attack vectors: either seeking the race condition (the window between the "check" and the "perform") or simply replacing the check entirely. As such this is a fundamentally unsolveable problem and one can only rely on the user to not run <em>anything</em> with elevated privileges if it could conceivably have been modified by another user.
-//!
+
+#pragma mark -
+#pragma mark Functions
+
 int main(int argc, const char *argv[])
 {
     // must be run as root or die
@@ -61,9 +70,9 @@ int main(int argc, const char *argv[])
     else if (child == 0)
     {
         // in child
-        char *const args[] =  { "/usr/bin/ditto", gdiff, "/usr/local/bin/gdiff", NULL };
+        char *const args[] =  { WO_DITTO, gdiff, "/usr/local/bin/gdiff", NULL };
         char *const env[] = {};
-        execve("/usr/bin/ditto", args, env);
+        execve(WO_DITTO, args, env);
         perror("error: (execve)");  // should never get to this line
         _exit(EXIT_FAILURE);
     }

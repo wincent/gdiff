@@ -7,7 +7,13 @@
 
 @interface WOAppController : NSObject {
 
-    BOOL installing;
+#pragma mark Interface Builder outlets
+
+    IBOutlet NSWindow   *installationWindow;
+
+#pragma mark Other instance variables
+
+    BOOL                installing;
 
 }
 
