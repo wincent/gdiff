@@ -1,0 +1,15 @@
+Sample files used to scaffold the development of the gdiff view code
+
+So as to not have to worry about the back end details while developing the view
+code this is a simple sample that will be used to popular the model and feed it
+to the view:
+
+  sample.diff - the output of a "git diff" invocation
+  sample.from - the blob corresponding to the "from" file
+  sample.to   - the blob corresponding to the "to" file
+
+This is a simple diff which contains only one file. I'll later work on handling
+multiple files.
+
+Gdiff will expect these files to be present in the ~/tmp/ directory at runtime.
+

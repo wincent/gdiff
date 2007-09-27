@@ -1,0 +1,88 @@
+commit 2552ca2353aa4c3d0af6b10b99f52c7a36ac1b72
+Author: Wincent Colaiuta <win@wincent.com>
+Date:   Thu Sep 27 13:58:42 2007 +0200
+
+    Factor out calls to AuthorizationFree
+    
+    This commit creates a new method that handles the call to AuthorizationFree
+    and prints a diagnostic message as appropriate. This cleans up some
+    repetition in the code (AuthorizationFree was previously called in three
+    places) and enables for cleaner program flow around the call to
+    AuthorizationExecuteWithPrivileges; specifically, we now handle one error as
+    a special case (failure to execute the tool), then all other errors (general
+    authorization failures) and finally the success case.
+    
+    This commit also fixes a bug wherein the failure cases did not result in the
+    early termination of the method.
+    
+    Signed-off-by: Wincent Colaiuta <win@wincent.com>
+
+diff --git a/WOAppController.m b/WOAppController.m
+index bd9847f..2390e6b 100644
+--- a/WOAppController.m
++++ b/WOAppController.m
+@@ -31,6 +31,10 @@
+ //! Performs actual installation in a separate thread.
+ - (void)performInstallationForAllUsers:(NSValue *)refValue;
+ 
++//! Attempts to free \p ref and prints a diagnostic message to the console on failure.
++//! As this is a harmless error no high-level messages are displayed to the user.
++- (void)freeAuthorizationRef:(AuthorizationRef)ref;
++
+ //! Callback invoked on main thread.
+ //! \p status is an NSNumber initialized with a BOOL value indicating the outcome of the installation (YES for success, NO for failure).
+ - (void)installationDidFinishWithStatus:(NSNumber *)status;
+@@ -79,11 +83,10 @@
+         // most likely cause is error -60005 (errAuthorizationDenied); ie. user entered incorrect password three times
+         NSLog(@"error: AuthorizationCopyRights returned %d", err);
+         [self presentErrorForAuthorizationFailure:err];
+-        AuthorizationFree(ref, kAuthorizationFlagDefaults);
++        [self freeAuthorizationRef:ref];
+         return;
+     }
+ 
+-    // NOTE: if this doesn't work just pass a pointer or stick the it in an instance variable
+     NSValue *valueRef = [NSValue value:&ref withObjCType:@encode(AuthorizationRef)];
+     [NSThread detachNewThreadSelector:@selector(performInstallationForAllUsers:) toTarget:self withObject:valueRef];
+ }
+@@ -174,15 +177,20 @@
+ 
+     // actually execute
+     OSStatus err = AuthorizationExecuteWithPrivileges(ref, tool, kAuthorizationFlagDefaults, arguments, &pipe);
+-    if (err != errAuthorizationSuccess)
++    [self freeAuthorizationRef:ref];
++    if (err == errAuthorizationToolExecuteFailure)
++    {
++        // not strictly an authorization failure (authorization succeeded but the tool failed to execute)
++        NSLog(@"error: AuthorizationExecuteWithPrivileges returned %d (tool failed to execute)", err);
++        [self presentErrorForInstallationFailure:EXIT_FAILURE];
++        return;
++    }
++    else if (err != errAuthorizationSuccess)
+     {
+         NSLog(@"error: AuthorizationExecuteWithPrivileges returned %d", err);
+         [self presentErrorForAuthorizationFailure:err];
++        return;
+     }
+-    err = AuthorizationFree(ref, kAuthorizationFlagDefaults);
+-    if (err != errAuthorizationSuccess)
+-        // don't bother the user with a high-level notification in this case; just log it instead
+-        NSLog(@"error: AuthorizationFree returned %d", err);
+ 
+     // read child pid
+     pid_t child;
+@@ -220,6 +228,14 @@
+     [pool drain];
+ }
+ 
++- (void)freeAuthorizationRef:(AuthorizationRef)ref
++{
++    OSStatus err = AuthorizationFree(ref, kAuthorizationFlagDefaults);
++    if (err != errAuthorizationSuccess)
++        // don't bother the user with a high-level notification in this case; just log it instead
++        NSLog(@"error: AuthorizationFree returned %d", err);
++}
++
+ - (void)installationDidFinishWithStatus:(NSNumber *)status
+ {
+     NSParameterAssert(status != nil);
