@@ -5,8 +5,13 @@
 // Created by Wincent Colaiuta on 26 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
+// system headers
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
 // other project headers
-#import "gdiff.h"
+#include "gdiff.h"
 
 //! \file installer-tool.m
 //! Installer tool for gdiff helper

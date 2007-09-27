@@ -15,7 +15,7 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		BC2466240CAA69370003AA11 /* installer-tool in Resources */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
-		BC2466250CAA694B0003AA11 /* installer-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.m */; };
+		BC2466250CAA694B0003AA11 /* installer-tool.c in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.c */; };
 		BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9376450CABBEDC00ECD330 /* Security.framework */; };
 		BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */; };
 		BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */; };
@@ -86,7 +86,7 @@
 		32DBCF750370BD2300C91783 /* gdiff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gdiff.h; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* gdiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC2466160CAA69040003AA11 /* installer-tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "installer-tool.m"; sourceTree = "<group>"; };
+		BC2466160CAA69040003AA11 /* installer-tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "installer-tool.c"; sourceTree = "<group>"; };
 		BC24661E0CAA69270003AA11 /* installer-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "installer-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC9376450CABBEDC00ECD330 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
@@ -307,7 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */,
-				BC2466160CAA69040003AA11 /* installer-tool.m */,
+				BC2466160CAA69040003AA11 /* installer-tool.c */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -444,7 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC2466250CAA694B0003AA11 /* installer-tool.m in Sources */,
+				BC2466250CAA694B0003AA11 /* installer-tool.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
