@@ -76,9 +76,11 @@
     err = AuthorizationCopyRights(ref, &rights, NULL, flags, NULL);
     if (err != errAuthorizationSuccess)
     {
+        // most likely cause is error -60005 (errAuthorizationDenied); ie. user entered incorrect password three times
         NSLog(@"error: AuthorizationCopyRights returned %d", err);
         [self presentErrorForAuthorizationFailure:err];
         AuthorizationFree(ref, kAuthorizationFlagDefaults);
+        return;
     }
 
     // NOTE: if this doesn't work just pass a pointer or stick the it in an instance variable
