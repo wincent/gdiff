@@ -55,7 +55,7 @@
 {
     NSAssert(self.installing == NO, @"already installing");
     self.installing = YES;
-    [NSThread detachNewThreadSelector:@selector(performInstallationForCurrentUser:) toTarget:self withObject:nil];
+    [self performSelectorInBackground:@selector(performInstallationForCurrentUser:) withObject:nil];
 }
 
 - (IBAction)installForAllUsers:(id)sender
@@ -88,7 +88,7 @@
     }
 
     NSValue *valueRef = [NSValue value:&ref withObjCType:@encode(AuthorizationRef)];
-    [NSThread detachNewThreadSelector:@selector(performInstallationForAllUsers:) toTarget:self withObject:valueRef];
+    [self performSelectorInBackground:@selector(performInstallationForAllUsers:) withObject:valueRef];
 }
 
 - (IBAction)showInstallationHelp:(id)sender
