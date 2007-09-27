@@ -14,7 +14,7 @@
 		8D15AC310486D014006FF6A4 /* WODocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* WODocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		BC2466240CAA69370003AA11 /* installer-tool in Resources */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
+		BC2466240CAA69370003AA11 /* installer-tool in Copy Shared Support */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
 		BC2466250CAA694B0003AA11 /* installer-tool.c in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.c */; };
 		BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9376450CABBEDC00ECD330 /* Security.framework */; };
 		BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */; };
@@ -25,7 +25,7 @@
 		BCCB6C920CA921D1002CE685 /* WODiff.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8E0CA921D1002CE685 /* WODiff.m */; };
 		BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C900CA921D1002CE685 /* WOFile.m */; };
 		BCCB6CCE0CA924E1002CE685 /* WODiffMachine.rl in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C9C0CA922A1002CE685 /* WODiffMachine.rl */; };
-		BCCB6CFE0CA931BD002CE685 /* gdiff in Resources */ = {isa = PBXBuildFile; fileRef = BCCB6CF80CA93194002CE685 /* gdiff */; };
+		BCCB6CFE0CA931BD002CE685 /* gdiff in Copy Shared Support */ = {isa = PBXBuildFile; fileRef = BCCB6CF80CA93194002CE685 /* gdiff */; };
 		BCCB6CFF0CA931C6002CE685 /* gdiff-tool.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6CF10CA9314C002CE685 /* gdiff-tool.m */; };
 		BCCB6D000CA931FA002CE685 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
 		BCCB6DF60CA9546F002CE685 /* WOPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6DF50CA9546F002CE685 /* WOPathUtilities.m */; };
@@ -74,6 +74,21 @@
 			remoteInfo = "gdiff tool";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BC9376B90CABCD2A00ECD330 /* Copy Shared Support */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 12;
+			files = (
+				BC2466240CAA69370003AA11 /* installer-tool in Copy Shared Support */,
+				BCCB6CFE0CA931BD002CE685 /* gdiff in Copy Shared Support */,
+			);
+			name = "Copy Shared Support";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -328,6 +343,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C05733C708A9546B00998B17 /* Build configuration list for PBXNativeTarget "gdiff GUI" */;
 			buildPhases = (
+				BC9376B90CABCD2A00ECD330 /* Copy Shared Support */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
@@ -409,8 +425,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC2466240CAA69370003AA11 /* installer-tool in Resources */,
-				BCCB6CFE0CA931BD002CE685 /* gdiff in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* Document.nib in Resources */,

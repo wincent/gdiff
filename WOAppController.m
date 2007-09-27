@@ -129,8 +129,7 @@
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSBundle *bundle = [NSBundle mainBundle];
-    NSString *gdiff = [bundle pathForAuxiliaryExecutable:@"gdiff"];
-    NSAssert(gdiff != nil, @"cannot locate gdiff helper tool");
+    NSString *gdiff = [[bundle sharedSupportPath] stringByAppendingPathComponent:@"gdiff"];
     NSString *target = [[NSHomeDirectory() stringByAppendingPathComponent:@"bin"] stringByAppendingPathComponent:@"gdiff"];
     NSArray *arguments = [NSArray arrayWithObjects:gdiff, target, nil];
     NSTask *task = nil;
@@ -164,14 +163,10 @@
     // set-up
     NSParameterAssert(refValue != nil);
     NSAutoreleasePool   *pool           = [[NSAutoreleasePool alloc] init];
-    NSBundle            *bundle         = [NSBundle mainBundle];
-
-    // note that pathForAuxiliaryExecutable works for Foundation (Objective-C) but not pure C tools
-    NSString            *installer      = [bundle pathForResource:@"installer-tool" ofType:nil];
-    NSAssert(installer != nil, @"cannot locate installer-tool");
+    NSString            *support        = [[NSBundle mainBundle] sharedSupportPath];
+    NSString            *installer      = [support stringByAppendingPathComponent:@"installer-tool"];
     const char          *tool           = [installer fileSystemRepresentation];
-    NSString            *gdiff          = [bundle pathForAuxiliaryExecutable:@"gdiff"];
-    NSAssert(gdiff != nil, @"cannot locate gdiff helper tool");
+    NSString            *gdiff          = [support stringByAppendingPathComponent:@"gdiff"];
     char                *arguments[]    = { (char *)[gdiff fileSystemRepresentation], NULL};
     FILE                *pipe           = NULL;
     AuthorizationRef    ref;
