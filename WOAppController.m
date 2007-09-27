@@ -214,6 +214,7 @@
     {
         NSLog(@"error: child process did not exit normally (%d/%d)", errno, status);
         [self presentErrorForInstallationFailure:errno];
+        status = EXIT_FAILURE;
     }
     else
     {
@@ -225,7 +226,7 @@
         }
     }
     [self performSelectorOnMainThread:@selector(installationDidFinishWithStatus:)
-                           withObject:[NSNumber numberWithBool:YES]
+                           withObject:status == EXIT_SUCCESS ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO]
                         waitUntilDone:YES];
     [pool drain];
 }
