@@ -199,11 +199,13 @@
     {
         NSLog(@"error: read returned %d (errno %d)", bytes_read, errno);
         [self presentErrorForInstallationFailure:errno];
+        return;
     }
     else if (bytes_read != sizeof(child))
     {
         NSLog(@"error: read %d bytes from child process (expected %d)", bytes_read, sizeof(child));
         [self presentErrorForInstallationFailure:EIO]; // don't have a "real" errno here so just use EIO ("An I/O error occurred")
+        return;
     }
 
     int status;
