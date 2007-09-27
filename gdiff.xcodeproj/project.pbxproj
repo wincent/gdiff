@@ -23,14 +23,14 @@
 
 /* Begin PBXBuildFile section */
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		8D15AC2E0486D014006FF6A4 /* Document.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* Document.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC310486D014006FF6A4 /* WODocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* WODocument.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		BC2466240CAA69370003AA11 /* installer-tool in Copy Shared Support */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
 		BC2466250CAA694B0003AA11 /* installer-tool.c in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.c */; };
+		BC93005A0CAC3AFB00F64893 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9300560CAC3AFB00F64893 /* Document.xib */; };
+		BC93005B0CAC3AFB00F64893 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9300580CAC3AFB00F64893 /* MainMenu.xib */; };
 		BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9376450CABBEDC00ECD330 /* Security.framework */; };
 		BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */; };
 		BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */; };
@@ -119,10 +119,10 @@
 		BC2466160CAA69040003AA11 /* installer-tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "installer-tool.c"; sourceTree = "<group>"; };
 		BC24661E0CAA69270003AA11 /* installer-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "installer-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC93000D0CAC1EE200F64893 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		BC9300570CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
+		BC9300590CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BC9376450CABBEDC00ECD330 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		BCCB6AAD0CA8729C002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
-		BCCB6AAE0CA872A3002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/Document.nib; sourceTree = "<group>"; };
 		BCCB6AAF0CA872A9002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCCB6AC50CA87373002CE685 /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BCCB6AC60CA87373002CE685 /* cocoa-app-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "cocoa-app-target.xcconfig"; path = "../../buildtools/cocoa-app-target.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -246,9 +246,9 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BC9300560CAC3AFB00F64893 /* Document.xib */,
+				BC9300580CAC3AFB00F64893 /* MainMenu.xib */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
-				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
-				2A37F4B4FDCFA73011CA2CEA /* Document.nib */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 			);
@@ -452,9 +452,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
-				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
-				8D15AC2E0486D014006FF6A4 /* Document.nib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
+				BC93005A0CAC3AFB00F64893 /* Document.xib in Resources */,
+				BC93005B0CAC3AFB00F64893 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,28 +537,28 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2A37F4B4FDCFA73011CA2CEA /* Document.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BCCB6AAE0CA872A3002CE685 /* en */,
-			);
-			name = Document.nib;
-			sourceTree = "<group>";
-		};
-		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BCCB6AAD0CA8729C002CE685 /* en */,
-			);
-			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
 		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
 				BCCB6AAC0CA87291002CE685 /* en */,
 			);
 			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		BC9300560CAC3AFB00F64893 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC9300570CAC3AFB00F64893 /* en */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		BC9300580CAC3AFB00F64893 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC9300590CAC3AFB00F64893 /* en */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

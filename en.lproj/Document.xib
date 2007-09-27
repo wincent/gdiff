@@ -117,7 +117,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label" id="35540484">diffView</string>
+						<string key="label">diffView</string>
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="1031557212"/>
 					</object>
@@ -274,28 +274,7 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<reference key="className" ref="621443140"/>
-					<string key="superclassName">NSDocument</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<reference key="NS.key.0" ref="35540484"/>
-						<reference key="NS.object.0" ref="1034259980"/>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBUserSource</string>
-						<string key="minorKey"/>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<reference key="className" ref="1034259980"/>
+					<string key="className">WODiffView</string>
 					<string key="superclassName" id="695238828">NSView</string>
 					<object class="NSMutableDictionary" key="actions">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -316,7 +295,7 @@
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
+						<string key="majorKey" id="685334350">IBProjectSource</string>
 						<string key="minorKey">WODiffView.h</string>
 					</object>
 				</object>
@@ -342,8 +321,55 @@
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBUserSource</string>
+						<string key="majorKey" id="701183787">IBUserSource</string>
 						<reference key="minorKey" ref="668570804"/>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<reference key="className" ref="621443140"/>
+					<string key="superclassName">NSDocument</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<reference key="majorKey" ref="701183787"/>
+						<reference key="minorKey" ref="668570804"/>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">WODocument</string>
+					<string key="superclassName">NSDocument</string>
+					<object class="NSMutableDictionary" key="actions">
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">diffView</string>
+						<string key="NS.object.0">WODiffView</string>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<reference key="majorKey" ref="685334350"/>
+						<string key="minorKey">WODocument.h</string>
 					</object>
 				</object>
 			</object>
@@ -391,17 +417,17 @@ ZXfSADcAOADYANmkANkAvAC9ADtcTlNDdXN0b21WaWV30gA3ADgA2wDcowDcAN0AO15OU011dGFibGVB
 cnJheVdOU0FycmF50gA3ADgA3wC8owC8AL0AO18QFXt7MCwgMH0sIHsxNDQwLCA4Nzh9fVp7NjQ2LCA0
 NTJ90gA3ADgA4wDkogDkADtfEBBOU1dpbmRvd1RlbXBsYXRlVndpbmRvd9IANwA4AOcA6KMA6ADpADtf
 EBROU05pYk91dGxldENvbm5lY3Rvcl5OU05pYkNvbm5lY3RvctQADgBMAE0ATgBPAH8AHwDugCyAIYAC
-gC5YZGlmZlZpZXfUAA4ATABNAE4ATwAfAFAA9IAsgAKACoAwWGRlbGVnYXRl0gAOAD4A9wD4gDSoAFAA
-XwB9AH4AwgB/AP8AiIAKgBCAEoAdgB+AIYAygBTSAA4AMgAzAQOABIAzXU5TQXBwbGljYXRpb27SADcA
-OAEGAN2iAN0AO9IADgA+APcBCYA0qAAfAFAAXwBfAH4AXwAfAH2AAoAKgBCAEIAdgBCAAoAS0gAOAD4A
-9wEUgDSpAFAAHwBfAH0AfgDCAH8A/wCIgAqAAoAQgBKAHYAfgCGAMoAU0gAOAD4A9wEggDSpAGIBIgEj
-ASQBJQEmAScBKAEpgAyAOIA5gDqAO4A8gD2APoA/XEZpbGUncyBPd25lclxDb250ZW50IFZpZXdfEBdQ
-dXNoIEJ1dHRvbiAoTmV4dCBGaWxlKV8QG1B1c2ggQnV0dG9uIChQcmV2aW91cyBGaWxlKV8QG0J1dHRv
-biBDZWxsIChQcmV2aW91cyBGaWxlKVlEaWZmIFZpZXdbQXBwbGljYXRpb25fEBdCdXR0b24gQ2VsbCAo
-TmV4dCBGaWxlKdIADgA+APcBNIA0oNIADgA+APcBN4A0oNIADgA+APcBOoA0rABQAEkASgBfAB8AfQB+
-AMIAfwBIAP8AiIAKgC2AL4AQgAKAEoAdgB+AIYAJgDKAFNIADgA+APcBSYA0rAFKAUsBTAFNAU4BTwFQ
-AVEBUgFTAVQBVYBEgEWARoBHgEiASYBKgEuATIBNgE6ATxAFEgABhs8QERAGEgABhtASAAGGtRIAAYa3
-EgABhrgSAAGGzhASE//////////9EgABhrbSAA4APgBGAWSAJaDSAA4APgD3AWeANKDSAA4APgD3AWqA
+gC5YZGlmZlZpZXfUAA4ATABNAE4ATwAfAFAA9IAsgAKACoAwWGRlbGVnYXRl0gAOAD4A9wD4gDSoAIgA
+fgB9APwAwgBQAF8Af4AUgB2AEoAygB+ACoAQgCHSAA4AMgAzAQOABIAzXU5TQXBwbGljYXRpb27SADcA
+OAEGAN2iAN0AO9IADgA+APcBCYA0qAB9AF8AXwAfAH4AHwBQAF+AEoAQgBCAAoAdgAKACoAQ0gAOAD4A
+9wEUgDSpAIgAfgAfAPwAfQDCAFAAXwB/gBSAHYACgDKAEoAfgAqAEIAh0gAOAD4A9wEggDSpASEBIgEj
+ASQBJQEmAGIBKAEpgDiAOYA6gDuAPIA9gAyAPoA/XxAXQnV0dG9uIENlbGwgKE5leHQgRmlsZSlfEBtQ
+dXNoIEJ1dHRvbiAoUHJldmlvdXMgRmlsZSlcRmlsZSdzIE93bmVyW0FwcGxpY2F0aW9uXxAXUHVzaCBC
+dXR0b24gKE5leHQgRmlsZSlfEBtCdXR0b24gQ2VsbCAoUHJldmlvdXMgRmlsZSlcQ29udGVudCBWaWV3
+WURpZmYgVmlld9IADgA+APcBNIA0oNIADgA+APcBN4A0oNIADgA+APcBOoA0rACIAEkAfgAfAH0A/ADC
+AFAASABfAH8ASoAUgC2AHYACgBKAMoAfgAqACYAQgCGAL9IADgA+APcBSYA0rAFKAUsBTAFNAU4BTwFQ
+AVEBUgFTAVQBVYBEgEWARoBHgEiASYBKgEuATIBNgE6ATxIAAYa2EgABhs8SAAGGtxIAAYbQEgABhrUT
+//////////0SAAGGuBAFEBIQBhIAAYbOEBHSAA4APgBGAWSAJaDSAA4APgD3AWeANKDSAA4APgD3AWqA
 NKDSADcAOAFsAW2iAW0AO15OU0lCT2JqZWN0RGF0YQAIABkAIgAnADEAOgA/AEQAUgBUAGYBEQEXAWIB
 aQFwAX4BkAGsAboBxgHSAeAB6wH5AhUCIwI2AkgCYgJsAnkCewJ9An8CgQKDAoUChwKJAosCjQKPApEC
 kwKVApcCmQKeAqACqQK1ArcCuQLEAs0C1gLhAuYC9QL+AxEDGgMlAycDKAMxAzgDRQNLA1QDVgNdA18D
@@ -412,9 +438,9 @@ iwaUBp4Grwa2Br0GxgbIBtEG0wbWBuMG7AbxBvgG+Qb7BwQHDQcaBycHMAc7B0QHTgdVB2EHfgeAB4IH
 hAeGB4cHiQeiB9MH1QfXB9kH2wfdB98H7QgGCAgICggMCA8IEQgTCCsINgg/CEgIVQheCGUIdAh8CIUI
 jAikCK8IuAi9CNAI1wjgCOcI/gkNCR4JIAkiCSQJJgkvCUAJQglECUYJSAlRCVoJXAltCW8JcQlzCXUJ
 dwl5CXsJfQmGCYgJigmYCaEJpgmvCbEJwgnECcYJyAnKCcwJzgnQCdIJ2wndCfAJ8gn0CfYJ+An6CfwJ
-/goACgIKCwoNCiAKIgokCiYKKAoqCiwKLgowCjIKPwpMCmYKhAqiCqwKuArSCtsK3QreCucK6QrqCvMK
-9QsOCxALEgsUCxYLGAsaCxwLHgsgCyILJAsmCy8LMQtKC0wLTgtQC1ILVAtWC1gLWgtcC14LYAtiC2QL
-aQtrC20Lcgt3C3wLgQuGC4gLkQuWC58LoQuiC6sLrQuuC7cLuQu6C8MLyAAAAAAAAAICAAAAAAAAAW4A
+/goACgIKCwoNCiAKIgokCiYKKAoqCiwKLgowCjIKTApqCncKgwqdCrsKyArSCtsK3QreCucK6QrqCvMK
+9QsOCxALEgsUCxYLGAsaCxwLHgsgCyILJAsmCy8LMQtKC0wLTgtQC1ILVAtWC1gLWgtcC14LYAtiC2cL
+bAtxC3YLewuEC4kLiwuNC48LlAuWC58LoQuiC6sLrQuuC7cLuQu6C8MLyAAAAAAAAAICAAAAAAAAAW4A
 AAAAAAAAAAAAAAAAAAvXA</bytes>
 		</object>
 	</data>
