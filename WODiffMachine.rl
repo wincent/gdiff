@@ -144,7 +144,9 @@
                               . to_spec
                               . chunk+;
 
-    main                      := file_block+ ;
+    # skip over commit messages, email headers, and patch preambles, stopping on seeing first "diff --git" in column 0
+    preamble_line             = ((any - linefeed)* - "diff --git") linefeed;
+    main                      := preamble_line* file_block+ ;
 
 }%%
 
