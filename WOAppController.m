@@ -128,6 +128,7 @@
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *gdiff = [bundle pathForAuxiliaryExecutable:@"gdiff"];
+    NSAssert(gdiff != nil, @"cannot locate gdiff helper tool");
     NSString *target = [[NSHomeDirectory() stringByAppendingPathComponent:@"bin"] stringByAppendingPathComponent:@"gdiff"];
     NSArray *arguments = [NSArray arrayWithObjects:gdiff, target, nil];
     NSTask *task = nil;
