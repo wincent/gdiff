@@ -6,6 +6,21 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		BC9300050CAC1E7F00F64893 /* Doxygen */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BC9300090CAC1EB300F64893 /* Build configuration list for PBXAggregateTarget "Doxygen" */;
+			buildPhases = (
+				BC9300040CAC1E7F00F64893 /* ShellScript */,
+			);
+			comments = "Produces code-level documentation using Doxygen.";
+			dependencies = (
+			);
+			name = Doxygen;
+			productName = Doxygen;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
@@ -103,6 +118,7 @@
 		8D15AC370486D014006FF6A4 /* gdiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2466160CAA69040003AA11 /* installer-tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "installer-tool.c"; sourceTree = "<group>"; };
 		BC24661E0CAA69270003AA11 /* installer-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "installer-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC93000D0CAC1EE200F64893 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
 		BC9376450CABBEDC00ECD330 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BCCB6AAD0CA8729C002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -198,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				BCCB6AC20CA87355002CE685 /* Configuration */,
+				BC9300080CAC1EB300F64893 /* Other */,
 				BC93761D0CABB6BF00ECD330 /* Shared */,
 				BCCB6DF30CA95441002CE685 /* Utility */,
 				BCCB6CE70CA9306F002CE685 /* Tools */,
@@ -245,6 +262,14 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BC9300080CAC1EB300F64893 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				BC93000D0CAC1EE200F64893 /* Doxyfile */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		BC93761D0CABB6BF00ECD330 /* Shared */ = {
@@ -416,6 +441,7 @@
 				BCCB6CF70CA93194002CE685 /* gdiff tool */,
 				BC24661D0CAA69270003AA11 /* installer-tool */,
 				8D15AC270486D014006FF6A4 /* gdiff GUI */,
+				BC9300050CAC1E7F00F64893 /* Doxygen */,
 			);
 		};
 /* End PBXProject section */
@@ -433,6 +459,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BC9300040CAC1E7F00F64893 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". \"${BUILDTOOLS_DIR}/RunDoxygen.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D15AC300486D014006FF6A4 /* Sources */ = {
@@ -538,6 +580,20 @@
 			};
 			name = Release;
 		};
+		BC9300060CAC1E7F00F64893 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Doxygen;
+			};
+			name = Debug;
+		};
+		BC9300070CAC1E7F00F64893 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Doxygen;
+			};
+			name = Release;
+		};
 		BCCB6CFA0CA93194002CE685 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BCCB6AC80CA87373002CE685 /* foundation-tool-target.xcconfig */;
@@ -594,6 +650,15 @@
 			buildConfigurations = (
 				BC2466200CAA69280003AA11 /* Debug */,
 				BC2466210CAA69280003AA11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC9300090CAC1EB300F64893 /* Build configuration list for PBXAggregateTarget "Doxygen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC9300060CAC1E7F00F64893 /* Debug */,
+				BC9300070CAC1E7F00F64893 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
