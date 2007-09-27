@@ -130,10 +130,24 @@
     NSString *gdiff = [bundle pathForAuxiliaryExecutable:@"gdiff"];
     NSString *target = [[NSHomeDirectory() stringByAppendingPathComponent:@"bin"] stringByAppendingPathComponent:@"gdiff"];
     NSArray *arguments = [NSArray arrayWithObjects:gdiff, target, nil];
-    NSTask *task = [NSTask launchedTaskWithLaunchPath:[NSString stringWithUTF8String:WO_DITTO] arguments:arguments];
-    NSAssert(task != nil, @"no ditto task object");
-    [task waitUntilExit];
-    int status = [task terminationStatus];
+    NSTask *task = nil;
+    int status = EXIT_FAILURE;
+    @try
+    {
+        // throws NSInvalidArgumentException if launch path is not accessible (eg ditto not present on system)
+        task = [NSTask launchedTaskWithLaunchPath:[NSString stringWithUTF8String:WO_DITTO] arguments:arguments];
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"error: %@ caught while trying to launch ditto (%@)", [exception name], [exception reason]);
+    }
+    if (task)
+    {
+        [task waitUntilExit];
+        status = [task terminationStatus];
+        if (status != EXIT_SUCCESS)
+            NSLog(@"error: ditto exited with status %d", status);
+    }
     if (status != EXIT_SUCCESS)
         [self presentErrorForInstallationFailure:status];
     [self performSelectorOnMainThread:@selector(installationDidFinishWithStatus:)
