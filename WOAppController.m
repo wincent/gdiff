@@ -209,10 +209,14 @@
     }
 
     int status;
-    waitpid(child, &status, WNOHANG);
-    if (!WIFEXITED(status))
+    if (waitpid(child, &status, 0) == -1)
     {
-        NSLog(@"error: child process did not exit normally (%d/%d)", errno, status);
+        perror("error: (waitpid)");
+        status = EXIT_FAILURE;
+    }
+    else if (!WIFEXITED(status))
+    {
+        NSLog(@"error: child process did not exit normally (status %d)", status);
         [self presentErrorForInstallationFailure:errno];
         status = EXIT_FAILURE;
     }
@@ -221,7 +225,7 @@
         status = WEXITSTATUS(status);
         if (status != EXIT_SUCCESS)
         {
-            NSLog(@"error: child exited with non-zero exit status (%d)\n", status);
+            NSLog(@"error: child exited with non-zero exit status (%d)", status);
             [self presentErrorForInstallationFailure:status];
         }
     }

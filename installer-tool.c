@@ -68,10 +68,7 @@ int main(int argc, const char *argv[])
     // now run ditto (use ditto because it is always included in the base install)
     pid_t child = vfork();
     if (child == -1)
-    {
         perror("error: (vfork)");
-        return EXIT_FAILURE;
-    }
     else if (child == 0)
     {
         // in child
@@ -85,20 +82,21 @@ int main(int argc, const char *argv[])
     {
         // in parent
         int status;
-        waitpid(child, &status, 0);
-        if (!WIFEXITED(status))
+        if (waitpid(child, &status, 0) == -1)
+            perror("error: (waitpid)");
+        else if (!WIFEXITED(status))
+            fprintf(stderr, "error: ditto did not exit normally (status %d)", status);
+        else
         {
-            fprintf(stderr, "error: failed to get exit status\n");
-            return EXIT_FAILURE;
+            status = WEXITSTATUS(status);
+            if (status != EXIT_SUCCESS)
+            {
+                fprintf(stderr, "error: ditto exited with non-zero exit status (%d)\n", status);
+                return status;
+            }
         }
-
-        status = WEXITSTATUS(status);
-        if (status != EXIT_SUCCESS)
-        {
-            fprintf(stderr, "error: exited with non-zero exit status (%d)\n", status);
-            return status;
-        }
-        // TODO: consider capturing stderr of child process; otherwise it just disappears
     }
+    // TODO: consider capturing stderr of child process; otherwise it just disappears
+    return EXIT_FAILURE;
 }
 
