@@ -31,6 +31,10 @@
 //! Performs actual installation in a separate thread.
 - (void)performInstallationForAllUsers:(NSValue *)refValue;
 
+//! Attempts to free \p ref and prints a diagnostic message to the console on failure.
+//! As this is a harmless error no high-level messages are displayed to the user.
+- (void)freeAuthorizationRef:(AuthorizationRef)ref;
+
 //! Callback invoked on main thread.
 //! \p status is an NSNumber initialized with a BOOL value indicating the outcome of the installation (YES for success, NO for failure).
 - (void)installationDidFinishWithStatus:(NSNumber *)status;
@@ -79,11 +83,10 @@
         // most likely cause is error -60005 (errAuthorizationDenied); ie. user entered incorrect password three times
         NSLog(@"error: AuthorizationCopyRights returned %d", err);
         [self presentErrorForAuthorizationFailure:err];
-        AuthorizationFree(ref, kAuthorizationFlagDefaults);
+        [self freeAuthorizationRef:ref];
         return;
     }
 
-    // NOTE: if this doesn't work just pass a pointer or stick the it in an instance variable
     NSValue *valueRef = [NSValue value:&ref withObjCType:@encode(AuthorizationRef)];
     [NSThread detachNewThreadSelector:@selector(performInstallationForAllUsers:) toTarget:self withObject:valueRef];
 }
@@ -174,15 +177,20 @@
 
     // actually execute
     OSStatus err = AuthorizationExecuteWithPrivileges(ref, tool, kAuthorizationFlagDefaults, arguments, &pipe);
-    if (err != errAuthorizationSuccess)
+    [self freeAuthorizationRef:ref];
+    if (err == errAuthorizationToolExecuteFailure)
+    {
+        // not strictly an authorization failure (authorization succeeded but the tool failed to execute)
+        NSLog(@"error: AuthorizationExecuteWithPrivileges returned %d (tool failed to execute)", err);
+        [self presentErrorForInstallationFailure:EXIT_FAILURE];
+        return;
+    }
+    else if (err != errAuthorizationSuccess)
     {
         NSLog(@"error: AuthorizationExecuteWithPrivileges returned %d", err);
         [self presentErrorForAuthorizationFailure:err];
+        return;
     }
-    err = AuthorizationFree(ref, kAuthorizationFlagDefaults);
-    if (err != errAuthorizationSuccess)
-        // don't bother the user with a high-level notification in this case; just log it instead
-        NSLog(@"error: AuthorizationFree returned %d", err);
 
     // read child pid
     pid_t child;
@@ -218,6 +226,14 @@
                            withObject:[NSNumber numberWithBool:YES]
                         waitUntilDone:YES];
     [pool drain];
+}
+
+- (void)freeAuthorizationRef:(AuthorizationRef)ref
+{
+    OSStatus err = AuthorizationFree(ref, kAuthorizationFlagDefaults);
+    if (err != errAuthorizationSuccess)
+        // don't bother the user with a high-level notification in this case; just log it instead
+        NSLog(@"error: AuthorizationFree returned %d", err);
 }
 
 - (void)installationDidFinishWithStatus:(NSNumber *)status
