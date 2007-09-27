@@ -165,7 +165,9 @@
     NSParameterAssert(refValue != nil);
     NSAutoreleasePool   *pool           = [[NSAutoreleasePool alloc] init];
     NSBundle            *bundle         = [NSBundle mainBundle];
-    NSString            *installer      = [bundle pathForAuxiliaryExecutable:@"installer-tool"];
+
+    // note that pathForAuxiliaryExecutable works for Foundation (Objective-C) but not pure C tools
+    NSString            *installer      = [bundle pathForResource:@"installer-tool" ofType:nil];
     NSAssert(installer != nil, @"cannot locate installer-tool");
     const char          *tool           = [installer fileSystemRepresentation];
     NSString            *gdiff          = [bundle pathForAuxiliaryExecutable:@"gdiff"];
