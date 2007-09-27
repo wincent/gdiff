@@ -90,13 +90,10 @@ int main(int argc, const char *argv[])
         {
             status = WEXITSTATUS(status);
             if (status != EXIT_SUCCESS)
-            {
                 fprintf(stderr, "error: ditto exited with non-zero exit status (%d)\n", status);
-                return status;
-            }
+            return status;
         }
     }
     // TODO: consider capturing stderr of child process; otherwise it just disappears
     return EXIT_FAILURE;
 }
-
