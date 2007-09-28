@@ -26,8 +26,10 @@
     NSRect          leftFrame       = [leftView frame];
     WOGlueView      *glueView       = [subviews objectAtIndex:1];
     NSRect          glueFrame       = [glueView frame];
-    NSView          *rightView      = [subviews objectAtIndex:2];
+    NSScrollView    *rightView      = [subviews objectAtIndex:2];
     NSRect          rightFrame      = [rightView frame];
+    NSScroller      *scroller       = [subviews objectAtIndex:3];
+    NSRect          scrollerFrame   = [scroller frame];
     NSSize          newBoundsSize   = [self bounds].size;
     CGFloat         scrollerWidth   = [NSScroller scrollerWidth];
     CGFloat         fileViewWidth   = floorf((newBoundsSize.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
@@ -36,23 +38,25 @@
     leftFrame.size.height       = newBoundsSize.height;
     glueFrame.size.height       = newBoundsSize.height;
     rightFrame.size.height      = newBoundsSize.height;
+    scrollerFrame.size.height   = newBoundsSize.height;
 
     // to ensure correct pixel layout recalculate the horizontal placement every time
     leftFrame.origin.x          = 0.0;
     leftFrame.size.width        = WO_GUTTER_WIDTH + fileViewWidth;
-    glueFrame.origin.x          = WO_GUTTER_WIDTH + fileViewWidth;
-    glueFrame.size.width        = WO_GLUE_WIDTH;
-    rightFrame.origin.x         = WO_GUTTER_WIDTH + fileViewWidth + WO_GLUE_WIDTH;
-    rightFrame.size.width       = fileViewWidth + WO_GUTTER_WIDTH + scrollerWidth;
+    rightFrame.size.width       = fileViewWidth + WO_GUTTER_WIDTH;
 
-    // let right view pick up slack (when width is an odd number, the division by 2 above causes us to lose a pixel)
-    CGFloat slack               = newBoundsSize.width - (leftFrame.size.width + WO_GLUE_WIDTH + rightFrame.size.width);
-    rightFrame.size.width       += slack;
+    // let glue view pick up slack (when width is an odd number, the division by 2 above causes us to lose a pixel)
+    CGFloat slack = newBoundsSize.width - (leftFrame.size.width + WO_GLUE_WIDTH + rightFrame.size.width + scrollerWidth);
+    glueFrame.origin.x          = leftFrame.size.width;
+    glueFrame.size.width        = WO_GLUE_WIDTH + slack;
+    rightFrame.origin.x         = glueFrame.origin.x + glueFrame.size.width;
+    scrollerFrame.origin.x      = rightFrame.origin.x + rightFrame.size.width;
 
     // apply changes
     [leftView setFrame:leftFrame];
     [glueView setFrame:glueFrame];
     [rightView setFrame:rightFrame];
+    [scroller setFrame:scrollerFrame];
 }
 
 @end
