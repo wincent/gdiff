@@ -16,16 +16,8 @@
 
 @implementation WODiffView
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
-
-- (void)drawRect:(NSRect)rect {
-    // Drawing code here.
-}
+#pragma mark -
+#pragma mark NSView overrides
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
