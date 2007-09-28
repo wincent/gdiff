@@ -11,9 +11,6 @@
 // other project class headers
 #import "WODiffMachine.h"
 #import "WODiffView.h"
-#import "WOFileView.h"
-#import "WOGlueView.h"
-#import "WOGutterView.h"
 
 // other project headers
 #import "gdiff.h"
@@ -69,81 +66,9 @@
     return @"Document";
 }
 
-- (void)windowControllerDidLoadNib:(NSWindowController *) aController
+- (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
-
-    // build subviews from left (0.0) to right; all maximum height
-    NSRect  bounds          = [diffView bounds];
-    CGFloat x               = 0.0;
-    CGFloat y               = 0.0;
-    CGFloat height          = bounds.size.height;
-    CGFloat scrollerWidth   = [NSScroller scrollerWidth];
-    CGFloat fileViewWidth   = floorf((bounds.size.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
-
-    // scroll view for left side
-    NSScrollView *leftScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
-    [leftScrollView setHasHorizontalScroller:YES];
-    [leftScrollView setAutohidesScrollers:YES];
-    [diffView addSubview:leftScrollView];
-
-    // on the left side we group together gutter and file views
-    NSView *leftView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
-    [leftView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
-    [leftScrollView setDocumentView:leftView];
-
-    // add WOGutterView (far left) for line numbers
-    leftGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
-    [leftGutterView setAutoresizingMask:NSViewHeightSizable | NSViewMaxXMargin];
-    [leftView addSubview:leftGutterView];
-    x += WO_GUTTER_WIDTH;
-
-    // add WOFileView (left) for "from" file
-    leftFileView = [[WOFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
-    [leftFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-    [leftView addSubview:leftFileView];
-    x += fileViewWidth;
-
-    // will let glue view pick up any slack (when width is an odd number, the division by 2 causes us to lose a pixel)
-    CGFloat slack = bounds.size.width - (fileViewWidth * 2 + WO_GUTTER_WIDTH * 2 + WO_GLUE_WIDTH + scrollerWidth);
-
-    // add WOGlueView (middle) for merge arrows
-    glueView = [[WOGlueView alloc] initWithFrame:NSMakeRect(x, y, WO_GLUE_WIDTH + slack, height)];
-    [diffView addSubview:glueView];
-    x += (WO_GLUE_WIDTH + slack);
-
-    // scroll view for right side
-    NSRect rightScrollRect = NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH, height);
-    NSScrollView *rightScrollView = [[NSScrollView alloc] initWithFrame:rightScrollRect];
-    [rightScrollView setHasHorizontalScroller:YES];
-    [rightScrollView setAutohidesScrollers:YES];
-    [diffView addSubview:rightScrollView];
-
-    // on the right side group together file and gutter views
-    NSView *rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH, height)];
-    [rightView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
-    [rightScrollView setDocumentView:rightView];
-    x = 0.0;
-
-    // add another WOFileView (right) for "to" file
-    rightFileView = [[WOFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
-    [rightFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-    [rightView addSubview:rightFileView];
-    x += fileViewWidth;
-
-    // add WOGutterView (farther right) for line numbers
-    rightGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
-    [rightGutterView setAutoresizingMask:NSViewHeightSizable | NSViewMinXMargin];
-    [rightView addSubview:rightGutterView];
-    x += WO_GUTTER_WIDTH;
-
-    // add NSScroller (far right)
-    NSRect scrollerRect = NSMakeRect(WO_GUTTER_WIDTH + fileViewWidth + WO_GLUE_WIDTH + slack + x , y, scrollerWidth, height);
-    scroller = [[NSScroller alloc] initWithFrame:scrollerRect];
-    [scroller setAutoresizingMask:NSViewHeightSizable | NSViewMinXMargin];
-    [scroller setTarget:self];
-    [scroller setAction:@selector(scroll:)];
-    [diffView addSubview:scroller];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
