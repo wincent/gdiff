@@ -29,16 +29,16 @@
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
-    NSArray     *subviews       = [self subviews];
-    NSView      *leftView       = [subviews objectAtIndex:0];
-    NSRect      leftFrame       = [leftView frame];
-    WOGlueView  *glueView       = [subviews objectAtIndex:1];
-    NSRect      glueFrame       = [glueView frame];
-    NSView      *rightView      = [subviews objectAtIndex:2];
-    NSRect      rightFrame      = [rightView frame];
-    NSSize      newBoundsSize   = [self bounds].size;
-    CGFloat     scrollerWidth   = [NSScroller scrollerWidth];
-    CGFloat     fileViewWidth   = floorf((newBoundsSize.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
+    NSArray         *subviews       = [self subviews];
+    NSScrollView    *leftView       = [subviews objectAtIndex:0];
+    NSRect          leftFrame       = [leftView frame];
+    WOGlueView      *glueView       = [subviews objectAtIndex:1];
+    NSRect          glueFrame       = [glueView frame];
+    NSView          *rightView      = [subviews objectAtIndex:2];
+    NSRect          rightFrame      = [rightView frame];
+    NSSize          newBoundsSize   = [self bounds].size;
+    CGFloat         scrollerWidth   = [NSScroller scrollerWidth];
+    CGFloat         fileViewWidth   = floorf((newBoundsSize.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
 
     // pass through height changes unadjusted
     leftFrame.size.height       = newBoundsSize.height;

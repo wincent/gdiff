@@ -82,9 +82,15 @@
     CGFloat scrollerWidth   = [NSScroller scrollerWidth];
     CGFloat fileViewWidth   = floorf((bounds.size.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
 
+    // scroll view for left side
+    NSScrollView *leftScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
+    [leftScrollView setHasVerticalScroller:NO];
+    [diffView addSubview:leftScrollView];
+
     // on the left side we group together gutter and file views
     NSView *leftView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
-    [diffView addSubview:leftView];
+    [leftView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
+    [leftScrollView setDocumentView:leftView];
 
     // add WOGutterView (far left) for line numbers
     leftGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
