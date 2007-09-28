@@ -9,6 +9,7 @@
 #import "WODocument.h"
 
 // other project class headers
+#import "WODiffMachine.h"
 #import "WODiffView.h"
 #import "WOFileView.h"
 #import "WOGlueView.h"
