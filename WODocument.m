@@ -57,7 +57,6 @@
         WODiffMachine *machine = [WODiffMachine diffMachine];
         WODiff *diff = [machine parseDiffData:diffData];
         NSAssert(diff != nil, @"failed to parse sample data");
-        NSLog(@"exito");
     }
     return self;
 }

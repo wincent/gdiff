@@ -19,6 +19,13 @@
 #pragma mark -
 #pragma mark NSView overrides
 
+- (id)initWithFrame:(NSRect)frameRect
+{
+    if ((self = [super initWithFrame:frameRect]))
+        NSLog(@"called");
+    return self;
+}
+
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
     NSArray         *subviews       = [self subviews];
