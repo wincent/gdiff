@@ -84,6 +84,8 @@
 
     // scroll view for left side
     NSScrollView *leftScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
+    [leftScrollView setHasHorizontalScroller:YES];
+    [leftScrollView setAutohidesScrollers:YES];
     [diffView addSubview:leftScrollView];
 
     // on the left side we group together gutter and file views
@@ -114,6 +116,8 @@
     // scroll view for right side
     NSRect rightScrollRect = NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH, height);
     NSScrollView *rightScrollView = [[NSScrollView alloc] initWithFrame:rightScrollRect];
+    [rightScrollView setHasHorizontalScroller:YES];
+    [rightScrollView setAutohidesScrollers:YES];
     [diffView addSubview:rightScrollView];
 
     // on the right side group together file and gutter views
