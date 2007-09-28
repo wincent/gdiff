@@ -104,24 +104,24 @@
     [leftView addSubview:leftFileView];
     x += fileViewWidth;
 
-    // add WOGlueView (middle) for merge arrows
-    glueView = [[WOGlueView alloc] initWithFrame:NSMakeRect(x, y, WO_GLUE_WIDTH, height)];
-    [diffView addSubview:glueView];
-    x += WO_GLUE_WIDTH;
-
-    // will let right view pick up any slack (when width is an odd number, the division by 2 causes us to lose a pixel)
+    // will let glue view pick up any slack (when width is an odd number, the division by 2 causes us to lose a pixel)
     CGFloat slack = bounds.size.width - (fileViewWidth * 2 + WO_GUTTER_WIDTH * 2 + WO_GLUE_WIDTH + scrollerWidth);
 
+    // add WOGlueView (middle) for merge arrows
+    glueView = [[WOGlueView alloc] initWithFrame:NSMakeRect(x, y, WO_GLUE_WIDTH + slack, height)];
+    [diffView addSubview:glueView];
+    x += (WO_GLUE_WIDTH + slack);
+
     // on the right side group together gutter, file and scroller views
-    NSView *rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + slack + WO_GUTTER_WIDTH + scrollerWidth, height)];
+    NSView *rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH + scrollerWidth, height)];
     [diffView addSubview:rightView];
     x = 0.0;
 
     // add another WOFileView (right) for "to" file
-    rightFileView = [[WOFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + slack, height)];
+    rightFileView = [[WOFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
     [rightFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
     [rightView addSubview:rightFileView];
-    x += (fileViewWidth + slack);
+    x += fileViewWidth;
 
     // add WOGutterView (farther right) for line numbers
     rightGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
