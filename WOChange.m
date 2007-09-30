@@ -8,6 +8,9 @@
 // class header
 #import "WOChange.h"
 
+// other headers
+#import "WOPublic/WODebugMacros.h"
+
 @interface WOChange ()
 
 #pragma mark -
@@ -63,7 +66,7 @@
     if ([self hasDeletion])
     {
         NSRange range = self.deletedRange;
-        NSParameterAssert(aLine == range.location + range.length);
+        WOParameterCheck(aLine == range.location + range.length);
         self.deletedRange = NSMakeRange(range.location, range.length + 1);
     }
     else
@@ -75,7 +78,7 @@
     if ([self hasInsertion])
     {
         NSRange range = self.insertedRange;
-        NSParameterAssert(aLine == range.location + range.length);
+        WOParameterCheck(aLine == range.location + range.length);
         self.insertedRange = NSMakeRange(range.location, range.length + 1);
     }
     else

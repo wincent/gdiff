@@ -122,6 +122,7 @@
 		BC9300570CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		BC9300590CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BC9376450CABBEDC00ECD330 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
+		BCA921120CB06CB400638599 /* WOPublic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WOPublic; sourceTree = "<group>"; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BCCB6AAF0CA872A9002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCCB6AC50CA87373002CE685 /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -213,6 +214,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* gdiff */ = {
 			isa = PBXGroup;
 			children = (
+				BCA921120CB06CB400638599 /* WOPublic */,
 				BCCB6AC20CA87355002CE685 /* Configuration */,
 				BC9300080CAC1EB300F64893 /* Other */,
 				BC93761D0CABB6BF00ECD330 /* Shared */,

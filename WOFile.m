@@ -8,6 +8,9 @@
 // class header
 #import "WOFile.h"
 
+// other headers
+#import "WOPublic/WODebugMacros.h"
+
 @implementation WOFile
 
 #pragma mark -
@@ -41,7 +44,7 @@
 
 - (void)appendChange:(WOChange *)aChange
 {
-    NSParameterAssert(aChange != nil);
+    WOParameterCheck(aChange != nil);
     [changes addObject:aChange];
 }
 

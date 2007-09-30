@@ -8,6 +8,9 @@
 // class header
 #import "WODiff.h"
 
+// other headers
+#import "WOPublic/WODebugMacros.h"
+
 @implementation WODiff
 
 #pragma mark -
@@ -35,7 +38,7 @@
 
 - (void)appendFile:(WOFile *)aFile
 {
-    NSParameterAssert(aFile != nil);
+    WOParameterCheck(aFile != nil);
     [files addObject:aFile];
 }
 
