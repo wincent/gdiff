@@ -26,11 +26,11 @@
 {
     if ((self = [super initWithFrame:frameRect]))
     {
-        // build subviews from left (0.0) to right; all maximum height
+        // build subviews from left (0.0) to right; all maximum height (allowing room for top and bottom borders)
         NSRect  bounds          = [self bounds];
         CGFloat x               = 0.0;
-        CGFloat y               = 0.0;
-        CGFloat height          = bounds.size.height;
+        CGFloat y               = WO_BORDER_WIDTH;
+        CGFloat height          = bounds.size.height - (2 * WO_BORDER_WIDTH);
         CGFloat scrollerWidth   = [NSScroller scrollerWidth];
         CGFloat fileViewWidth   = floorf((bounds.size.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
 
@@ -102,6 +102,36 @@
     return self;
 }
 
+- (void)drawRect:(NSRect)aRect
+{
+    NSRect  bounds          = [self bounds];
+    NSColor *borderColor    = nil;
+
+    // draw top border
+    NSRect border = NSMakeRect(0.0, bounds.size.height - WO_BORDER_WIDTH, bounds.size.width, WO_BORDER_WIDTH);
+    NSRect draw = NSIntersectionRect(border, aRect);
+    if (!NSIsEmptyRect(draw))
+    {
+        borderColor = [NSColor lightGrayColor];
+        [borderColor set];
+        NSRectFill(draw);
+    }
+
+    // draw bottom border
+    border = NSMakeRect(0.0, 0.0, bounds.size.width, WO_BORDER_WIDTH);
+    draw = NSIntersectionRect(border, aRect);
+    if (!NSIsEmptyRect(draw))
+    {
+        // border color most likely is already set
+        if (!borderColor)
+            [[NSColor lightGrayColor] set];
+        NSRectFill(draw);
+    }
+
+    // let super handle subviews
+    [super drawRect:aRect];
+}
+
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
     NSRect          leftFrame       = [leftScrollView frame];
@@ -113,10 +143,14 @@
     CGFloat         fileViewWidth   = floorf((newBoundsSize.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
 
     // pass through height changes unadjusted
-    leftFrame.size.height       = newBoundsSize.height;
-    glueFrame.size.height       = newBoundsSize.height;
-    rightFrame.size.height      = newBoundsSize.height;
-    scrollerFrame.size.height   = newBoundsSize.height;
+    leftFrame.size.height       = newBoundsSize.height - (WO_BORDER_WIDTH * 2);
+    leftFrame.origin.y          = WO_BORDER_WIDTH;
+    glueFrame.size.height       = newBoundsSize.height - (WO_BORDER_WIDTH * 2);
+    glueFrame.origin.y          = WO_BORDER_WIDTH;
+    rightFrame.size.height      = newBoundsSize.height - (WO_BORDER_WIDTH * 2);
+    rightFrame.origin.y         = WO_BORDER_WIDTH;
+    scrollerFrame.size.height   = newBoundsSize.height - (WO_BORDER_WIDTH * 2);
+    scrollerFrame.origin.y      = WO_BORDER_WIDTH;
 
     // to ensure correct pixel layout recalculate the horizontal placement every time
     leftFrame.origin.x          = 0.0;
