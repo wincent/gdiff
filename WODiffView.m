@@ -48,6 +48,7 @@
         // add WOGutterView (far left) for line numbers
         leftGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
         [leftGutterView setAutoresizingMask:NSViewHeightSizable | NSViewMaxXMargin];
+        [leftGutterView setBorderMask:WORightBorder];
         [leftView addSubview:leftGutterView];
         x += WO_GUTTER_WIDTH;
 
@@ -86,6 +87,7 @@
         // add WOGutterView (farther right) for line numbers
         rightGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
         [rightGutterView setAutoresizingMask:NSViewHeightSizable | NSViewMinXMargin];
+        [rightGutterView setBorderMask:WOLeftBorder];
         [rightView addSubview:rightGutterView];
         x += WO_GUTTER_WIDTH;
 

@@ -8,6 +8,8 @@
 // class header
 #import "WOGutterView.h"
 
+#define WO_BORDER_WIDTH 1.0
+
 @implementation WOGutterView
 
 - (id)initWithFrame:(NSRect)frame {
@@ -18,10 +20,34 @@
     return self;
 }
 
-- (void)drawRect:(NSRect)rect {
-    // Drawing code here.
-    [[NSColor yellowColor] set];
-    NSRectFill(rect);
+- (void)drawRect:(NSRect)rect
+{
+    NSRect bounds   = [self bounds];
+
+    // draw left border if required
+    if (borderMask & WOLeftBorder)
+    {
+        NSRect leftBorder = NSMakeRect(0.0, 0.0, WO_BORDER_WIDTH, bounds.size.height);
+        NSRect draw = NSIntersectionRect(leftBorder, rect);
+        [[NSColor lightGrayColor] set];
+        NSRectFill(draw);
+    }
+
+    // draw right border if required
+    if (borderMask & WORightBorder)
+    {
+        NSRect rightBorder = NSMakeRect(bounds.size.width - WO_BORDER_WIDTH, 0.0, WO_BORDER_WIDTH, bounds.size.height);
+        NSRect draw = NSIntersectionRect(rightBorder, rect);
+        [[NSColor lightGrayColor] set];
+        NSRectFill(draw);
+    }
+
+    // draw line numbers
 }
+
+#pragma mark -
+#pragma mark Properties
+
+@synthesize borderMask;
 
 @end
