@@ -42,4 +42,9 @@
     [files addObject:aFile];
 }
 
+#pragma mark -
+#pragma mark Properties
+
+@synthesize files;
+
 @end

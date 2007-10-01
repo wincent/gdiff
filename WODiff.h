@@ -20,4 +20,9 @@
 //! \exception NSInternalInconsistencyException thrown if \p aFile is nil.
 - (void)appendFile:(WOFile *)aFile;
 
+#pragma mark -
+#pragma mark Properties
+
+@property(readonly) NSArray *files;
+
 @end
