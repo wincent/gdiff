@@ -34,16 +34,10 @@
         CGFloat scrollerWidth   = [NSScroller scrollerWidth];
         CGFloat fileViewWidth   = floorf((bounds.size.width - (2 * WO_GUTTER_WIDTH) - WO_GLUE_WIDTH - scrollerWidth) / 2);
 
-        // scroll view for left side
-        leftScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
-        [leftScrollView setHasHorizontalScroller:YES];
-        [leftScrollView setAutohidesScrollers:YES];
-        [self addSubview:leftScrollView];
-
         // on the left side we group together gutter and file views
-        NSView *leftView = [[NSView alloc] initWithFrame:NSMakeRect(x, 0.0, WO_GUTTER_WIDTH + fileViewWidth, height)];
+        leftView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
         [leftView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
-        [leftScrollView setDocumentView:leftView];
+        [self addSubview:leftView];
 
         // add WOGutterView (far left) for line numbers
         leftGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, 0.0, WO_GUTTER_WIDTH, height)];
@@ -52,10 +46,17 @@
         [leftView addSubview:leftGutterView];
         x += WO_GUTTER_WIDTH;
 
+        // scroll view for left side
+        leftScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
+        [leftScrollView setHasHorizontalScroller:YES];
+        [leftScrollView setAutohidesScrollers:YES];
+        [leftScrollView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+        [leftView addSubview:leftScrollView];
+
         // add WOFileView (left) for "from" file
         leftFileView = [[WOFromFileView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
         [leftFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-        [leftView addSubview:leftFileView];
+        [leftScrollView setDocumentView:leftFileView];
         x += fileViewWidth;
 
         // will let glue view pick up any slack (when width is an odd number, the division by 2 causes us to lose a pixel)
@@ -66,22 +67,23 @@
         [self addSubview:glueView];
         x += (WO_GLUE_WIDTH + slack);
 
+        // on the right side group together file and gutter views
+        rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH, height)];
+        [rightView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
+        [self addSubview:rightView];
+        x = 0.0;
+
         // scroll view for right side
-        rightScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH, height)];
+        rightScrollView = [[NSScrollView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
         [rightScrollView setHasHorizontalScroller:YES];
         [rightScrollView setAutohidesScrollers:YES];
-        [self addSubview:rightScrollView];
-
-        // on the right side group together file and gutter views
-        NSView *rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth + WO_GUTTER_WIDTH, height)];
-        [rightView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
-        [rightScrollView setDocumentView:rightView];
-        x = 0.0;
+        [rightScrollView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
+        [rightView addSubview:rightScrollView];
 
         // add another WOFileView (right) for "to" file
         rightFileView = [[WOToFileView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
         [rightFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
-        [rightView addSubview:rightFileView];
+        [rightScrollView setDocumentView:rightFileView];
         x += fileViewWidth;
 
         // add WOGutterView (farther right) for line numbers
@@ -134,9 +136,9 @@
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize
 {
-    NSRect          leftFrame       = [leftScrollView frame];
+    NSRect          leftFrame       = [leftView frame];
     NSRect          glueFrame       = [glueView frame];
-    NSRect          rightFrame      = [rightScrollView frame];
+    NSRect          rightFrame      = [rightView frame];
     NSRect          scrollerFrame   = [scroller frame];
     NSSize          newBoundsSize   = [self bounds].size;
     CGFloat         scrollerWidth   = [NSScroller scrollerWidth];
@@ -165,9 +167,9 @@
     scrollerFrame.origin.x      = rightFrame.origin.x + rightFrame.size.width;
 
     // apply changes
-    [leftScrollView setFrame:leftFrame];
+    [leftView setFrame:leftFrame];
     [glueView setFrame:glueFrame];
-    [rightScrollView setFrame:rightFrame];
+    [rightView setFrame:rightFrame];
     [scroller setFrame:scrollerFrame];
 }
 

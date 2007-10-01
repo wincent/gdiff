@@ -13,13 +13,15 @@
 //!
 @interface WODiffView : NSView {
 
-    NSScrollView        *leftScrollView;
+    NSView              *leftView;
     WOGutterView        *leftGutterView;
+    NSScrollView        *leftScrollView;
     WOFromFileView      *leftFileView;
     WOGlueView          *glueView;
+    NSView              *rightView;
     NSScrollView        *rightScrollView;
-    WOGutterView        *rightGutterView;
     WOToFileView        *rightFileView;
+    WOGutterView        *rightGutterView;
     NSScroller          *scroller;
     WOFile              *file;
 }
