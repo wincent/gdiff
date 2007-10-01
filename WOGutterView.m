@@ -29,8 +29,11 @@
     {
         NSRect leftBorder = NSMakeRect(0.0, 0.0, WO_BORDER_WIDTH, bounds.size.height);
         NSRect draw = NSIntersectionRect(leftBorder, rect);
-        [[NSColor lightGrayColor] set];
-        NSRectFill(draw);
+        if (!NSIsEmptyRect(draw))
+        {
+            [[NSColor lightGrayColor] set];
+            NSRectFill(draw);
+        }
     }
 
     // draw right border if required
@@ -38,8 +41,11 @@
     {
         NSRect rightBorder = NSMakeRect(bounds.size.width - WO_BORDER_WIDTH, 0.0, WO_BORDER_WIDTH, bounds.size.height);
         NSRect draw = NSIntersectionRect(rightBorder, rect);
-        [[NSColor lightGrayColor] set];
-        NSRectFill(draw);
+        if (!NSIsEmptyRect(draw))
+        {
+            [[NSColor lightGrayColor] set];
+            NSRectFill(draw);
+        }
     }
 
     // draw line numbers
