@@ -41,19 +41,19 @@
         [self addSubview:leftScrollView];
 
         // on the left side we group together gutter and file views
-        NSView *leftView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH + fileViewWidth, height)];
+        NSView *leftView = [[NSView alloc] initWithFrame:NSMakeRect(x, 0.0, WO_GUTTER_WIDTH + fileViewWidth, height)];
         [leftView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
         [leftScrollView setDocumentView:leftView];
 
         // add WOGutterView (far left) for line numbers
-        leftGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
+        leftGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, 0.0, WO_GUTTER_WIDTH, height)];
         [leftGutterView setAutoresizingMask:NSViewHeightSizable | NSViewMaxXMargin];
         [leftGutterView setBorderMask:WORightBorder];
         [leftView addSubview:leftGutterView];
         x += WO_GUTTER_WIDTH;
 
         // add WOFileView (left) for "from" file
-        leftFileView = [[WOFromFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
+        leftFileView = [[WOFromFileView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
         [leftFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [leftView addSubview:leftFileView];
         x += fileViewWidth;
@@ -73,19 +73,19 @@
         [self addSubview:rightScrollView];
 
         // on the right side group together file and gutter views
-        NSView *rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth + WO_GUTTER_WIDTH, height)];
+        NSView *rightView = [[NSView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth + WO_GUTTER_WIDTH, height)];
         [rightView setAutoresizingMask:NSViewHeightSizable | NSViewWidthSizable];
         [rightScrollView setDocumentView:rightView];
         x = 0.0;
 
         // add another WOFileView (right) for "to" file
-        rightFileView = [[WOToFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
+        rightFileView = [[WOToFileView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
         [rightFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [rightView addSubview:rightFileView];
         x += fileViewWidth;
 
         // add WOGutterView (farther right) for line numbers
-        rightGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, y, WO_GUTTER_WIDTH, height)];
+        rightGutterView = [[WOGutterView alloc] initWithFrame:NSMakeRect(x, 0.0, WO_GUTTER_WIDTH, height)];
         [rightGutterView setAutoresizingMask:NSViewHeightSizable | NSViewMinXMargin];
         [rightGutterView setBorderMask:WOLeftBorder];
         [rightView addSubview:rightGutterView];
