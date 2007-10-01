@@ -9,6 +9,7 @@
 #import "WODocument.h"
 
 // other project class headers
+#import "WODiff.h"
 #import "WODiffMachine.h"
 #import "WODiffView.h"
 
@@ -37,23 +38,6 @@
 {
     if ((self= [super init]))
     {
-        // for testing only: load sample files
-        NSString *tmp = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
-        NSData *diffData = [NSData dataWithContentsOfFile:[tmp stringByAppendingPathComponent:@"sample.diff"]];
-        NSAssert(diffData != nil, @"failed to read sample.diff");
-        NSString *from = [NSString stringWithContentsOfFile:[tmp stringByAppendingPathComponent:@"sample.from"]
-                                                   encoding:NSUTF8StringEncoding
-                                                      error:NULL];
-        NSAssert(from != nil, @"failed to read sample.from");
-        NSString *to = [NSString stringWithContentsOfFile:[tmp stringByAppendingPathComponent:@"sample.to"]
-                                                 encoding:NSUTF8StringEncoding
-                                                    error:NULL];
-        NSAssert(to != nil, @"failed to read sample.to");
-
-        // initialize models with contents of sample files
-        WODiffMachine *machine = [WODiffMachine diffMachine];
-        WODiff *diff = [machine parseDiffData:diffData];
-        NSAssert(diff != nil, @"failed to parse sample data");
     }
     return self;
 }
@@ -69,6 +53,27 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {
     [super windowControllerDidLoadNib:aController];
+
+    // for testing only: load sample files
+    NSString *tmp = [NSHomeDirectory() stringByAppendingPathComponent:@"tmp"];
+    NSData *diffData = [NSData dataWithContentsOfFile:[tmp stringByAppendingPathComponent:@"sample.diff"]];
+    NSAssert(diffData != nil, @"failed to read sample.diff");
+    NSString *from = [NSString stringWithContentsOfFile:[tmp stringByAppendingPathComponent:@"sample.from"]
+                                               encoding:NSUTF8StringEncoding
+                                                  error:NULL];
+    NSAssert(from != nil, @"failed to read sample.from");
+    NSString *to = [NSString stringWithContentsOfFile:[tmp stringByAppendingPathComponent:@"sample.to"]
+                                             encoding:NSUTF8StringEncoding
+                                                error:NULL];
+    NSAssert(to != nil, @"failed to read sample.to");
+
+    // initialize models with contents of sample files
+    WODiffMachine *machine = [WODiffMachine diffMachine];
+    WODiff *diff = [machine parseDiffData:diffData];
+    NSAssert(diff != nil, @"failed to parse sample data");
+
+    // initialize view with content: final code will use bindings for this
+    [diffView setFile:[[diff files] objectAtIndex:0]];
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
