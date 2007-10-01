@@ -23,7 +23,8 @@
 
 - (void)drawRect:(NSRect)rect
 {
-    NSRect bounds   = [self bounds];
+    NSRect  bounds          = [self bounds];
+    NSColor *borderColor    = nil;
 
     // draw left border if required
     if (borderMask & WOLeftBorder)
@@ -32,7 +33,8 @@
         NSRect draw = NSIntersectionRect(leftBorder, rect);
         if (!NSIsEmptyRect(draw))
         {
-            [[NSColor lightGrayColor] set];
+            borderColor = [NSColor lightGrayColor];
+            [borderColor set];
             NSRectFill(draw);
         }
     }
@@ -44,7 +46,9 @@
         NSRect draw = NSIntersectionRect(rightBorder, rect);
         if (!NSIsEmptyRect(draw))
         {
-            [[NSColor lightGrayColor] set];
+            // border color will already be set if left border was drawn
+            if (!borderColor)
+                [[NSColor lightGrayColor] set];
             NSRectFill(draw);
         }
     }
