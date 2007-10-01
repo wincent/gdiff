@@ -12,6 +12,7 @@
 #import "WODiff.h"
 #import "WODiffMachine.h"
 #import "WODiffView.h"
+#import "WOFile.h"
 
 // other project headers
 #import "gdiff.h"
@@ -73,7 +74,10 @@
     NSAssert(diff != nil, @"failed to parse sample data");
 
     // initialize view with content: final code will use bindings for this
-    [diffView setFile:[[diff files] objectAtIndex:0]];
+    WOFile *file    = [[diff files] objectAtIndex:0];
+    file.fromBlob   = from;
+    file.toBlob     = to;
+    diffView.file   = file;
 }
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError

@@ -10,18 +10,59 @@
 
 @implementation WOFileView
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
+#pragma mark -
+#pragma mark NSTextView overrides
+
+- (id)initWithFrame:(NSRect)frameRect textContainer:(NSTextContainer *)aTextContainer
+{
+    if ((self = [super initWithFrame:frameRect textContainer:aTextContainer]))
+    {
+        // setting a really big container disables wrapping
+        [aTextContainer setContainerSize:NSMakeSize(FLT_MAX, FLT_MAX)];
+        [aTextContainer setWidthTracksTextView:NO];
+        [aTextContainer setHeightTracksTextView:NO];
+
+        // view setup
+        [self setFont:[NSFont userFixedPitchFontOfSize:0.0]];
+        [self setEditable:NO];
+        [self setHorizontallyResizable:YES];
+        [self setVerticallyResizable:YES];
+        [self setAutoresizingMask:NSViewNotSizable];
     }
     return self;
 }
 
-- (void)drawRect:(NSRect)rect {
-    // Drawing code here.
-    [[NSColor redColor] set];
-    NSRectFill(rect);
+- (void)drawViewBackgroundInRect:(NSRect)rect
+{
+    // TODO: still to decide whether to perform highlighting here or in drawRect:
+    [super drawViewBackgroundInRect:rect];
 }
+
+
+#pragma mark -
+#pragma mark NSView overrides
+
+- (void)drawRect:(NSRect)rect
+{
+    // TODO: still to decide whether to perform highlighting here or in drawViewBackgroundInRect:
+    [super drawRect:rect];
+}
+
+#pragma mark -
+#pragma mark Properties
+
+- (void)setText:(NSString *)aText
+{
+    if (aText != text)
+    {
+        text = aText;
+        if (text)
+            // temporary: for demo purposes only
+            [[self textStorage] setAttributedString:[[NSAttributedString alloc] initWithString:text]];
+    }
+}
+
+@synthesize text;
+@synthesize changes;
 
 @end

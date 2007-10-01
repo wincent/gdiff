@@ -9,6 +9,7 @@
 #import "WODiffView.h"
 
 // other project class headers
+#import "WOFile.h"
 #import "WOFromFileView.h"
 #import "WOGlueView.h"
 #import "WOGutterView.h"
@@ -55,7 +56,6 @@
 
         // add WOFileView (left) for "from" file
         leftFileView = [[WOFromFileView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
-        [leftFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [leftScrollView setDocumentView:leftFileView];
         x += fileViewWidth;
 
@@ -82,7 +82,6 @@
 
         // add another WOFileView (right) for "to" file
         rightFileView = [[WOToFileView alloc] initWithFrame:NSMakeRect(x, 0.0, fileViewWidth, height)];
-        [rightFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [rightScrollView setDocumentView:rightFileView];
         x += fileViewWidth;
 
@@ -175,6 +174,20 @@
 
 #pragma mark -
 #pragma mark Properties
+
+- (void)setFile:(WOFile *)aFile
+{
+    if (aFile != file)
+    {
+        // this is only temporary: will later need to integrate this with threaded, lazy model
+        // and probably use some kind of bindings or KVO
+        file                    = aFile;
+        leftFileView.text       = file.fromBlob;
+        leftFileView.changes    = file.changes;
+        rightFileView.text      = file.toBlob;
+        rightFileView.changes   = file.changes;
+    }
+}
 
 @synthesize file;
 
