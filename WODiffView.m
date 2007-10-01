@@ -9,9 +9,10 @@
 #import "WODiffView.h"
 
 // other project class headers
-#import "WOFileView.h"
+#import "WOFromFileView.h"
 #import "WOGlueView.h"
 #import "WOGutterView.h"
+#import "WOToFileView.h"
 
 // other project headers
 #import "gdiff.h"
@@ -51,7 +52,7 @@
         x += WO_GUTTER_WIDTH;
 
         // add WOFileView (left) for "from" file
-        leftFileView = [[WOFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
+        leftFileView = [[WOFromFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
         [leftFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [leftView addSubview:leftFileView];
         x += fileViewWidth;
@@ -77,7 +78,7 @@
         x = 0.0;
 
         // add another WOFileView (right) for "to" file
-        rightFileView = [[WOFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
+        rightFileView = [[WOToFileView alloc] initWithFrame:NSMakeRect(x, y, fileViewWidth, height)];
         [rightFileView setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [rightView addSubview:rightFileView];
         x += fileViewWidth;

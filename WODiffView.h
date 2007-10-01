@@ -5,7 +5,7 @@
 // Created by Wincent Colaiuta on 25 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-@class WOFileView, WOGlueView, WOGutterView;
+@class WOFromFileView, WOGlueView, WOGutterView, WOToFileView;
 
 //! Simple container class that sets up the subviews necessary for displaying side-by-side file comparisons.
 //!
@@ -15,11 +15,11 @@
 
     NSScrollView        *leftScrollView;
     WOGutterView        *leftGutterView;
-    WOFileView          *leftFileView;
+    WOFromFileView      *leftFileView;
     WOGlueView          *glueView;
     NSScrollView        *rightScrollView;
     WOGutterView        *rightGutterView;
-    WOFileView          *rightFileView;
+    WOToFileView        *rightFileView;
     NSScroller          *scroller;
 
 }

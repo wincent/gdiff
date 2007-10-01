@@ -32,8 +32,10 @@
 		BC93005A0CAC3AFB00F64893 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9300560CAC3AFB00F64893 /* Document.xib */; };
 		BC93005B0CAC3AFB00F64893 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9300580CAC3AFB00F64893 /* MainMenu.xib */; };
 		BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9376450CABBEDC00ECD330 /* Security.framework */; };
+		BCA9225E0CB0FF4500638599 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA9225D0CB0FF4500638599 /* WOFileView.m */; };
+		BCA9226B0CB0FF8100638599 /* WOToFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCA9226A0CB0FF8100638599 /* WOToFileView.m */; };
 		BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */; };
-		BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */; };
+		BCCB6AF00CA87A9B002CE685 /* WOFromFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AEF0CA87A9B002CE685 /* WOFromFileView.m */; };
 		BCCB6AF30CA87AA5002CE685 /* WOGlueView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */; };
 		BCCB6B1E0CA89147002CE685 /* WOGutterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6B1D0CA89147002CE685 /* WOGutterView.m */; };
 		BCCB6C910CA921D1002CE685 /* WOChange.m in Sources */ = {isa = PBXBuildFile; fileRef = BCCB6C8C0CA921D1002CE685 /* WOChange.m */; };
@@ -123,6 +125,10 @@
 		BC9300590CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BC9376450CABBEDC00ECD330 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
 		BCA921120CB06CB400638599 /* WOPublic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WOPublic; sourceTree = "<group>"; };
+		BCA9225C0CB0FF4500638599 /* WOFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOFileView.h; sourceTree = "<group>"; };
+		BCA9225D0CB0FF4500638599 /* WOFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOFileView.m; sourceTree = "<group>"; };
+		BCA922690CB0FF8100638599 /* WOToFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOToFileView.h; sourceTree = "<group>"; };
+		BCA9226A0CB0FF8100638599 /* WOToFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOToFileView.m; sourceTree = "<group>"; };
 		BCCB6AAC0CA87291002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BCCB6AAF0CA872A9002CE685 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCCB6AC50CA87373002CE685 /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -132,8 +138,8 @@
 		BCCB6AC90CA87373002CE685 /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BCCB6AEB0CA87A8D002CE685 /* WODiffView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WODiffView.h; sourceTree = "<group>"; };
 		BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WODiffView.m; sourceTree = "<group>"; };
-		BCCB6AEE0CA87A9B002CE685 /* WOFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOFileView.h; sourceTree = "<group>"; };
-		BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOFileView.m; sourceTree = "<group>"; };
+		BCCB6AEE0CA87A9B002CE685 /* WOFromFileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOFromFileView.h; sourceTree = "<group>"; };
+		BCCB6AEF0CA87A9B002CE685 /* WOFromFileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOFromFileView.m; sourceTree = "<group>"; };
 		BCCB6AF10CA87AA5002CE685 /* WOGlueView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOGlueView.h; sourceTree = "<group>"; };
 		BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOGlueView.m; sourceTree = "<group>"; };
 		BCCB6B1C0CA89147002CE685 /* WOGutterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOGutterView.h; sourceTree = "<group>"; };
@@ -314,12 +320,16 @@
 			children = (
 				BCCB6AEB0CA87A8D002CE685 /* WODiffView.h */,
 				BCCB6AEC0CA87A8D002CE685 /* WODiffView.m */,
-				BCCB6AEE0CA87A9B002CE685 /* WOFileView.h */,
-				BCCB6AEF0CA87A9B002CE685 /* WOFileView.m */,
 				BCCB6AF10CA87AA5002CE685 /* WOGlueView.h */,
 				BCCB6AF20CA87AA5002CE685 /* WOGlueView.m */,
 				BCCB6B1C0CA89147002CE685 /* WOGutterView.h */,
 				BCCB6B1D0CA89147002CE685 /* WOGutterView.m */,
+				BCA9225C0CB0FF4500638599 /* WOFileView.h */,
+				BCA9225D0CB0FF4500638599 /* WOFileView.m */,
+				BCCB6AEE0CA87A9B002CE685 /* WOFromFileView.h */,
+				BCCB6AEF0CA87A9B002CE685 /* WOFromFileView.m */,
+				BCA922690CB0FF8100638599 /* WOToFileView.h */,
+				BCA9226A0CB0FF8100638599 /* WOToFileView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -487,7 +497,7 @@
 				8D15AC310486D014006FF6A4 /* WODocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				BCCB6AED0CA87A8D002CE685 /* WODiffView.m in Sources */,
-				BCCB6AF00CA87A9B002CE685 /* WOFileView.m in Sources */,
+				BCCB6AF00CA87A9B002CE685 /* WOFromFileView.m in Sources */,
 				BCCB6AF30CA87AA5002CE685 /* WOGlueView.m in Sources */,
 				BCCB6B1E0CA89147002CE685 /* WOGutterView.m in Sources */,
 				BCCB6C910CA921D1002CE685 /* WOChange.m in Sources */,
@@ -495,6 +505,8 @@
 				BCCB6C930CA921D1002CE685 /* WOFile.m in Sources */,
 				BCCB6DF70CA9546F002CE685 /* WOPathUtilities.m in Sources */,
 				BCCB6E450CA95E16002CE685 /* WOAppController.m in Sources */,
+				BCA9225E0CB0FF4500638599 /* WOFileView.m in Sources */,
+				BCA9226B0CB0FF8100638599 /* WOToFileView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
