@@ -8,7 +8,8 @@
 // class header
 #import "WOGutterView.h"
 
-#define WO_BORDER_WIDTH 1.0
+// other headers
+#import "gdiff.h"
 
 @implementation WOGutterView
 
