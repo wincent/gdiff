@@ -5,7 +5,7 @@
 // Created by Wincent Colaiuta on 25 September 2007.
 // Copyright 2007 Wincent Colaiuta.
 
-@class WOFromFileView, WOGlueView, WOGutterView, WOToFileView;
+@class WOFile, WOFromFileView, WOGlueView, WOGutterView, WOToFileView;
 
 //! Simple container class that sets up the subviews necessary for displaying side-by-side file comparisons.
 //!
@@ -21,7 +21,13 @@
     WOGutterView        *rightGutterView;
     WOToFileView        *rightFileView;
     NSScroller          *scroller;
-
+    WOFile              *file;
 }
+
+#pragma mark -
+#pragma mark Properties
+
+//! The file represented by the receiver.
+@property WOFile *file;
 
 @end

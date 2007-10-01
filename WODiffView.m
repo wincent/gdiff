@@ -135,4 +135,9 @@
     [scroller setFrame:scrollerFrame];
 }
 
+#pragma mark -
+#pragma mark Properties
+
+@synthesize file;
+
 @end
