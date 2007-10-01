@@ -53,7 +53,23 @@
         }
     }
 
+    // set up paragraph attributes
+    // TODO: user control over font type and size
+    NSFont *font = [NSFont userFixedPitchFontOfSize:0.0];
+    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+    if (borderMask & WORightBorder)
+        [style setAlignment:NSRightTextAlignment];
+    else
+        [style setAlignment:NSLeftTextAlignment];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                font,                       NSFontAttributeName,
+                                [NSColor darkGrayColor],    NSForegroundColorAttributeName,
+                                style,                      NSParagraphStyleAttributeName, nil];
+
     // draw line numbers
+    // testing only
+    NSRect lineRect = [self bounds];
+    [@"1234" drawInRect:lineRect withAttributes:attributes];
 }
 
 #pragma mark -
