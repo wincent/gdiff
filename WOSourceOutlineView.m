@@ -25,7 +25,7 @@
 
 - (void)drawRect:(NSRect)rect
 {
-    // Drawing code here.
+    [super drawRect:rect];
 }
 
 @end
