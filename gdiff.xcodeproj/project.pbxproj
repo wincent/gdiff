@@ -29,6 +29,7 @@
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		BC2466240CAA69370003AA11 /* installer-tool in Copy Shared Support */ = {isa = PBXBuildFile; fileRef = BC24661E0CAA69270003AA11 /* installer-tool */; };
 		BC2466250CAA694B0003AA11 /* installer-tool.c in Sources */ = {isa = PBXBuildFile; fileRef = BC2466160CAA69040003AA11 /* installer-tool.c */; };
+		BC8503730CB25A8A001924A9 /* WOSourceOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC8503720CB25A8A001924A9 /* WOSourceOutlineView.m */; };
 		BC93005A0CAC3AFB00F64893 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9300560CAC3AFB00F64893 /* Document.xib */; };
 		BC93005B0CAC3AFB00F64893 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9300580CAC3AFB00F64893 /* MainMenu.xib */; };
 		BC9376460CABBEDC00ECD330 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC9376450CABBEDC00ECD330 /* Security.framework */; };
@@ -120,6 +121,8 @@
 		8D15AC370486D014006FF6A4 /* gdiff.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gdiff.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2466160CAA69040003AA11 /* installer-tool.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "installer-tool.c"; sourceTree = "<group>"; };
 		BC24661E0CAA69270003AA11 /* installer-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "installer-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC8503710CB25A8A001924A9 /* WOSourceOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WOSourceOutlineView.h; sourceTree = "<group>"; };
+		BC8503720CB25A8A001924A9 /* WOSourceOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WOSourceOutlineView.m; sourceTree = "<group>"; };
 		BC93000D0CAC1EE200F64893 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
 		BC9300570CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Document.xib; sourceTree = "<group>"; };
 		BC9300590CAC3AFB00F64893 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -330,6 +333,8 @@
 				BCCB6AEF0CA87A9B002CE685 /* WOFromFileView.m */,
 				BCA922690CB0FF8100638599 /* WOToFileView.h */,
 				BCA9226A0CB0FF8100638599 /* WOToFileView.m */,
+				BC8503710CB25A8A001924A9 /* WOSourceOutlineView.h */,
+				BC8503720CB25A8A001924A9 /* WOSourceOutlineView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				BCCB6E450CA95E16002CE685 /* WOAppController.m in Sources */,
 				BCA9225E0CB0FF4500638599 /* WOFileView.m in Sources */,
 				BCA9226B0CB0FF8100638599 /* WOToFileView.m in Sources */,
+				BC8503730CB25A8A001924A9 /* WOSourceOutlineView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
