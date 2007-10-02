@@ -10,15 +10,21 @@
 
 @implementation WOSourceOutlineView
 
-- (id)initWithFrame:(NSRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code here.
-    }
+#pragma mark NSCoding protocol
+
+// as this class is only instantiated from the nib, no need to implement initWithFrame:, only initWithCoder:
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    if ((self = [super initWithCoder:decoder]))
+        [self setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleSourceList];
     return self;
 }
 
-- (void)drawRect:(NSRect)rect {
+#pragma mark -
+#pragma mark NSView overrides
+
+- (void)drawRect:(NSRect)rect
+{
     // Drawing code here.
 }
 
